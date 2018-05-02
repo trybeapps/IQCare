@@ -1,0 +1,10 @@
+C:\IQCare 3.6.0\References\DataAccess.Entity.dll
+C:\IQCare 3.6.0\References\DataAccess.Entity.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.pdb
+C:\Projects\IQCare 3.6.0\References\DataAccess.Entity.dll
+C:\Projects\IQCare 3.6.0\References\DataAccess.Entity.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.csprojResolveAssemblyReference.cache
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.dll
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\obj\Debug\DataAccess.Entity.pdb

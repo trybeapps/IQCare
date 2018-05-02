@@ -1,0 +1,35 @@
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\IQCare Management.exe.config
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\IQCare Management.exe
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\IQCare Management.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\ActiveDatabaseSoftware.ActiveQueryBuilder.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\ActiveDatabaseSoftware.MSSQLMetadataProvider.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\ActiveDatabaseSoftware.OLEDBMetadataProvider.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\ActiveDatabaseSoftware.UniversalMetadataProvider.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\AjaxControlToolkit.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Common.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Interface.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Presentation.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.FormBuilder.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.SCM.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Security.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Service.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\itextsharp.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Telerik.Web.UI.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Laboratory.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\log4net.dll
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Presentation.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\IQCare.Service.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Common.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Application.Interface.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.FormBuilder.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.SCM.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Security.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Service.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\bin\Debug\Interface.Laboratory.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare Management.csprojResolveAssemblyReference.cache
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare_Management.frmLogin.resources
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare_Management.frmMain.resources
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare_Management.Properties.Resources.resources
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare Management.csproj.GenerateResource.Cache
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare Management.exe
+C:\Projects\IQCare 3.6.0\SourceBase\IQCare Management\obj\Debug\IQCare Management.pdb

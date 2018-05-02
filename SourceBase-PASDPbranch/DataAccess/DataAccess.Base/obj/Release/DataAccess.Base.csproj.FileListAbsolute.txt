@@ -1,0 +1,5 @@
+C:\IQCare 3.6.0\References\DataAccess.Base.dll
+C:\IQCare 3.6.0\References\DataAccess.Base.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Base\obj\Release\DataAccess.Base.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Base\obj\Release\DataAccess.Base.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Base\obj\Release\DataAccess.Base.pdb

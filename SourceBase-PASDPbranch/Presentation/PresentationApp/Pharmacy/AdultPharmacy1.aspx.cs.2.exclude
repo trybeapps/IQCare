@@ -1,0 +1,731 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using Application.Common;
+using Application.Presentation;
+using Interface.Pharmacy;  
+
+
+public partial class Pharmacy_AdultPharmacy1 : System.Web.UI.Page
+{
+
+    public int counter = 1;
+
+    DataSet theDS;
+    DataView theDV = new DataView();
+    #region "User Function"
+    private void Init_Form()
+    {
+        IDrug DrugManager;
+        DrugManager = (IDrug)ObjectFactory.CreateInstance("BusinessProcess.Pharmacy.BDrug, BusinessProcess.Pharmacy");
+        theDS = DrugManager.GetPharmacyMasters();
+
+        PnlDrug.Controls.Clear();
+        //PnlOther.Controls.Clear(); 
+        lblPatientName.Text = theDS.Tables[6].Rows[0]["Name"].ToString();
+        lblpatientenrol.Text = theDS.Tables[6].Rows[0]["PatientEnrollmentID"].ToString();
+
+        lblExisclinicID.Text = theDS.Tables[6].Rows[0]["PatientClinicID"].ToString();
+        Label6.Text = theDS.Tables[6].Rows[0]["Height"].ToString();
+        Label5.Text = theDS.Tables[6].Rows[0]["Weight"].ToString();
+        CreateControls(theDS);
+        BindControls(theDS);
+
+    }
+
+    #region Bind MedicationList"
+
+    private void BindMedicationList()
+    {
+
+        Panel theList = new Panel();
+        theList.ID = "theList";
+        theList.Height = 100;
+        theList.Width = 500;
+        theList.Wrap = false;
+        theList.CssClass = "Usercheckbox";
+
+        CheckBoxList chkMedicationList = new CheckBoxList();
+        chkMedicationList.ID = "chkMedicationList";
+        chkMedicationList.Width = 300;
+        chkMedicationList.
+        //chkMedicationList.Height = 80;
+
+        BindFunctions theBindMgr = new BindFunctions();
+        theBindMgr.BindCheckedList(chkMedicationList, ((DataSet)Session["MasterData"]).Tables[7], "DrugName", "Drug_pk");
+        theList.Controls.Add(chkMedicationList);
+        
+        Button theBtn = new Button();
+        theBtn.Text = "Go";
+        theBtn.ID = "theBtnGo";
+        theBtn.Width = 80;
+        theBtn.CssClass = "marginbuttonPharmacyList";
+        theBtn.Click += new EventHandler(theBtn_Click);
+
+        PnlDrug.Controls.Add(theList);
+        PnlDrug.Controls.Add(theBtn);
+
+    }
+
+    #region Fill Other Medications
+    void theBtn_Click(object sender, EventArgs e)
+    {
+        CheckBoxList thechklist = new CheckBoxList();
+        thechklist = (CheckBoxList)PnlDrug.FindControl("chkMedicationList");
+        #region "TempControl"
+        Label thelbl = new Label();
+        thelbl.ID = "lblHeight";
+        thelbl.Text = "";
+        thelbl.Height = 20;
+        PnlDrug.Controls.Add(thelbl);
+        #endregion
+
+        int i = 0;
+        for(i = 0;i < thechklist.Items.Count;i++)
+        {
+            if (thechklist.Items[i].Selected == true)
+            {
+                int DrugId = Convert.ToInt32(thechklist.Items[i].Value);
+                BindCustomControls(DrugId);
+            }
+        }
+
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Bind Controls
+    private void BindControls(DataSet theDS)
+    {
+
+        DataView theDVOrder = new DataView();
+        theDVOrder = new DataView(theDS.Tables[3]);
+        DataTable theDTOrder = new DataTable();
+        if (theDVOrder.Count > 0)
+        {
+            IQCareUtils theUtils = new IQCareUtils();
+            theDTOrder = theUtils.CreateTableFromDataView(theDVOrder);
+
+        }
+        BindFunctions theBindMgr = new BindFunctions();
+        theBindMgr.BindCombo(ddlPharmOrderedbyName, theDTOrder, "Name", "EmployeeId");
+
+
+        DataView theDVDispensed = new DataView();
+        theDVDispensed = new DataView(theDS.Tables[4]);
+        DataTable theDTDispensed = new DataTable();
+        if (theDVDispensed.Count > 0)
+        {
+            IQCareUtils theUtils = new IQCareUtils();
+            theDTDispensed = theUtils.CreateTableFromDataView(theDVDispensed);
+
+        }
+        //BindFunctions theBindMgr = new BindFunctions();
+        theBindMgr.BindCombo(ddlPharmReportedbyName, theDTDispensed, "Name", "EmployeeId");
+
+
+
+        DataView theDVSignature = new DataView();
+        theDVSignature = new DataView(theDS.Tables[5]);
+        DataTable theDTSignature = new DataTable();
+        if (theDVSignature.Count > 0)
+        {
+            IQCareUtils theUtils = new IQCareUtils();
+            theDTSignature = theUtils.CreateTableFromDataView(theDVSignature);
+
+        }
+        //BindFunctions theBindMgr = new BindFunctions();
+        theBindMgr.BindCombo(ddlPharmSignature, theDTSignature, "Name", "EmployeeId");
+
+    }
+
+    private void BindCustomControls(int DrugId)
+    {
+        Panel thePnl = new Panel();
+        thePnl.ID = "pnl" + DrugId;
+        thePnl.Height = 20;
+        thePnl.Width = 800;
+
+        /////// Space//////
+        Label theSpace = new Label();
+        theSpace.Width = 20;
+        theSpace.Text = "";
+        ////////////////////
+        DataSet theDS = (DataSet)Session["MasterData"];
+        DataView theDV = new DataView(theDS.Tables[0]);
+        theDV.RowFilter = "drug_pk = " + DrugId; 
+
+        Label theDrugNm = new Label();
+        theDrugNm.ID = "drgNm" + DrugId;
+        theDrugNm.Text = theDV[0][1].ToString();
+        theDrugNm.Width = 180;
+        thePnl.Controls.Add(theDrugNm);
+        thePnl.Controls.Add(theSpace);
+
+        DataView theDVStrength = new DataView(theDS.Tables[1]);
+        theDVStrength.RowFilter = "DrugId = " + DrugId;
+        DataTable theDTStrength = new DataTable();
+        if (theDVStrength.Count > 0)
+        {
+            IQCareUtils theUtils = new IQCareUtils();
+            theDTStrength = theUtils.CreateTableFromDataView(theDVStrength);
+        }
+
+        BindFunctions theBindMgr = new BindFunctions();
+        DropDownList theDrugStrength = new DropDownList();
+        theDrugStrength.ID = "drgStrength" + DrugId;
+        theDrugStrength.Width = 80;
+        theBindMgr.BindCombo(theDrugStrength, theDTStrength, "StrengthName", "StrengthId");
+        thePnl.Controls.Add(theDrugStrength);
+
+        ////////////Space////////////////////////
+        Label theSpace1 = new Label();
+        theSpace1.Width = 20;
+        theSpace1.Text = "";
+        thePnl.Controls.Add(theSpace1);
+        ////////////////////////////////////////
+
+        DataView theDVFrequency = new DataView(theDS.Tables[2]);
+        theDVFrequency.RowFilter = "DrugId = " + DrugId;
+        DataTable theDTFrequency = new DataTable();
+        if (theDVFrequency.Count > 0)
+        {
+           IQCareUtils theUtils = new IQCareUtils();
+            theDTFrequency = theUtils.CreateTableFromDataView(theDVFrequency);
+        }
+
+        DropDownList theDrugFrequency = new DropDownList();
+        theDrugFrequency.ID = "drgFrequency" + DrugId;
+        theDrugFrequency.Width = 80;
+        theBindMgr.BindCombo(theDrugFrequency, theDTFrequency, "FrequencyName", "FrequencyId");
+        thePnl.Controls.Add(theDrugFrequency);
+       
+        ////////////Space////////////////////////
+        Label theSpace2 = new Label();
+        theSpace2.Width = 15;
+        theSpace2.Text = "";
+        thePnl.Controls.Add(theSpace2);
+        ////////////////////////////////////////
+
+        TextBox theDuration = new TextBox();
+        theDuration.ID = "drgDuration" + DrugId;
+        theDuration.Width = 120;
+        thePnl.Controls.Add(theDuration);
+
+        ////////////Space////////////////////////
+        Label theSpace3 = new Label();
+        theSpace3.Width = 20;
+        theSpace3.Text = "";
+        thePnl.Controls.Add(theSpace3);
+        ////////////////////////////////////////
+
+        TextBox theQtyPrescribed = new TextBox();
+        theQtyPrescribed.ID = "drgQtyPrescribed" + DrugId;
+        theQtyPrescribed.Width = 120;
+        thePnl.Controls.Add(theQtyPrescribed);
+        ////////////Space////////////////////////
+        Label theSpace4 = new Label();
+        theSpace4.Width = 20;
+        theSpace4.Text = "";
+        thePnl.Controls.Add(theSpace4);
+        ////////////////////////////////////////
+
+        TextBox theQtyDispensed = new TextBox();
+        theQtyDispensed.ID = "drgQtyDispensed" + DrugId;
+        theQtyDispensed.Width = 120;
+        thePnl.Controls.Add(theQtyDispensed);
+        ////////////Space////////////////////////
+        Label theSpace5 = new Label();
+        theSpace5.Width = 20;
+        theSpace5.Text = "";
+        thePnl.Controls.Add(theSpace5);
+        ////////////////////////////////////////
+
+        PnlDrug.Controls.Add(thePnl);
+    }
+    #endregion
+
+    #region Create Controls Dynamically
+    private void CreateControls(DataSet theCntlDS)
+    {
+        DataSet theDS = new DataSet();
+        theDS.ReadXml(Server.MapPath("..\\XMLFiles\\adultpharmacylist.xml"));
+        int theDrugId = 0;
+
+        Label lblDrugName = new Label();
+        lblDrugName.Text = "Drug Name";
+        lblDrugName.ID = "lblDrugName";
+        lblDrugName.Font.Bold = true;
+        lblDrugName.Visible = true;
+
+        Label lblSpace = new Label();
+        lblSpace.Width = 150;
+        lblSpace.ID = "lblSpace1";
+        lblSpace.Text = "";
+        
+
+        Label lblStrength = new Label();
+        lblStrength.Text = "Strength";
+        lblStrength.ID = "lblStrength";
+        lblStrength.Font.Bold = true;
+        lblStrength.Visible = true;
+
+        Label lblSpace1 = new Label();
+        lblSpace1.Width = 50;
+        lblSpace1.ID = "lblSpace2";
+        lblSpace1.Text = "";
+
+        Label lblFrequency = new Label();
+        lblFrequency.Text = "Frequency";
+        lblFrequency.ID = "lblFrequency";
+        lblFrequency.Font.Bold = true;
+        lblFrequency.Visible = true;
+
+        Label lblSpace2 = new Label();
+        lblSpace2.Width = 50;
+        lblSpace2.ID = "lblSpace3";
+        lblSpace2.Text = "";
+
+        Label lblDuration = new Label();
+        lblDuration.Text = "Duration";
+        lblDuration.ID = "lblDuration";
+        lblDuration.Font.Bold = true;
+        lblDuration.Visible = true;
+
+        Label lblSpace3 = new Label();
+        lblSpace3.Width = 70;
+        lblSpace3.ID = "lblSpace4";
+        lblSpace3.Text = "";
+
+        Label lblQtyPrescribed = new Label();
+        lblQtyPrescribed.Text = "Quantity Prescribed";
+        lblQtyPrescribed.ID = "lblQuantityPres";
+        lblQtyPrescribed.Font.Bold = true;
+        lblQtyPrescribed.Visible = true;
+
+        Label lblSpace4 = new Label();
+        lblSpace4.Width = 30;
+        lblSpace4.ID = "lblSpace5";
+        lblSpace4.Text = "";
+
+        Label lblQtyDispensed = new Label();
+        lblQtyDispensed.Text = "Quantity Dispensed";
+        lblQtyDispensed.ID = "lblQuantityDisp";
+        lblQtyDispensed.Font.Bold = true;
+        lblQtyDispensed.Visible = true;
+
+        PnlDrug.Controls.Add(lblSpace);
+        PnlDrug.Controls.Add(lblDrugName);
+        PnlDrug.Controls.Add(lblSpace);
+        PnlDrug.Controls.Add(lblStrength);
+        PnlDrug.Controls.Add(lblSpace1);
+        PnlDrug.Controls.Add(lblFrequency);
+        PnlDrug.Controls.Add(lblSpace2);
+        PnlDrug.Controls.Add(lblDuration);
+        PnlDrug.Controls.Add(lblSpace3);
+        PnlDrug.Controls.Add(lblQtyPrescribed);
+        PnlDrug.Controls.Add(lblSpace4);
+        PnlDrug.Controls.Add(lblQtyDispensed);
+                                                    
+        int i = 0; 
+        foreach(DataRow dr in theDS.Tables[0].Rows)
+        {
+            theDrugId = 0;
+            theDrugId = Convert.ToInt32(dr[0].ToString());
+
+            Panel thePnl = new Panel();
+            thePnl.ID = "pnl" + theDrugId;
+            thePnl.Height = 20;
+            thePnl.Width = 800;
+            thePnl.Controls.Clear();
+    
+            if (Convert.ToInt32(dr[0]) < 10)
+            {
+                Label theHeading = new Label();
+                theHeading.Text = dr[1].ToString();
+                theHeading.ID = "lbl" + dr[1].ToString();
+                theHeading.Font.Bold = true;
+                thePnl.Controls.Add(theHeading);
+
+            }
+            else
+            {
+                ///////// Space//////
+                Label theSpace = new Label();
+                theSpace.ID = "lblSp1" + theDrugId;
+                theSpace.Width = 20;
+                theSpace.Text = "";
+                //////////////////////
+
+                Label theDrugNm = new Label();
+                theDrugNm.ID = "drgNm" + theDrugId;
+                theDrugNm.Text = dr[1].ToString();
+                theDrugNm.Width = 180;
+                thePnl.Controls.Add(theDrugNm);
+                thePnl.Controls.Add(theSpace);
+
+                DataView theDVStrength = new DataView(theCntlDS.Tables[1]);
+                theDVStrength.RowFilter = "DrugId = " + theDrugId;
+                DataTable theDTStrength = new DataTable();
+                if (theDVStrength.Count > 0)
+                {
+                    IQCareUtils theUtils = new IQCareUtils();
+                    theDTStrength = theUtils.CreateTableFromDataView(theDVStrength);
+                }
+
+                BindFunctions theBindMgr = new BindFunctions();
+                DropDownList theDrugStrength = new DropDownList();
+                theDrugStrength.ID = "drgStrength" + theDrugId;
+                theDrugStrength.Width = 80;
+                theBindMgr.BindCombo(theDrugStrength, theDTStrength, "StrengthName", "StrengthId");
+                thePnl.Controls.Add(theDrugStrength);
+
+                //////////////Space////////////////////////
+                Label theSpace1 = new Label();
+                theSpace1.ID = "lblSp2" + theDrugId;
+                theSpace1.Width = 20;
+                theSpace1.Text = "";
+                thePnl.Controls.Add(theSpace1);
+                //////////////////////////////////////////
+
+                DataView theDVFrequency = new DataView(theCntlDS.Tables[2]);
+                theDVFrequency.RowFilter = "DrugId = " + theDrugId;
+                DataTable theDTFrequency = new DataTable();
+                if (theDVFrequency.Count > 0)
+                {
+                    IQCareUtils theUtils = new IQCareUtils();
+                    theDTFrequency = theUtils.CreateTableFromDataView(theDVFrequency);
+                }
+
+                DropDownList theDrugFrequency = new DropDownList();
+                theDrugFrequency.ID = "drgFrequency" + theDrugId;
+                theDrugFrequency.Width = 80;
+                theBindMgr.BindCombo(theDrugFrequency, theDTFrequency, "FrequencyName", "FrequencyId");
+                thePnl.Controls.Add(theDrugFrequency);
+                //////////////Space////////////////////////
+                Label theSpace2 = new Label();
+                theSpace2.ID = "lblSp3" + theDrugId;
+                theSpace2.Width = 15;
+                theSpace2.Text = "";
+                thePnl.Controls.Add(theSpace2);
+                //////////////////////////////////////////
+
+                TextBox theDuration = new TextBox();
+                theDuration.ID = "drgDuration" + theDrugId;
+                theDuration.Width = 120;
+                thePnl.Controls.Add(theDuration);
+
+                //////////////Space////////////////////////
+                Label theSpace3 = new Label();
+                theSpace3.ID = "lblSp4" + theDrugId;
+                theSpace3.Width = 20;
+                theSpace3.Text = "";
+                thePnl.Controls.Add(theSpace3);
+                //////////////////////////////////////////
+
+                TextBox theQtyPrescribed = new TextBox();
+                theQtyPrescribed.ID = "drgQtyPrescribed" + theDrugId;
+                theQtyPrescribed.Width = 120;
+                thePnl.Controls.Add(theQtyPrescribed);
+                //////////////Space////////////////////////
+                Label theSpace4 = new Label();
+                theSpace4.ID = "lblSp5" + theDrugId;
+                theSpace4.Width = 20;
+                theSpace4.Text = "";
+                thePnl.Controls.Add(theSpace4);
+                //////////////////////////////////////////
+
+                TextBox theQtyDispensed = new TextBox();
+                theQtyDispensed.ID = "drgQtyDispensed" + theDrugId;
+                theQtyDispensed.Width = 120;
+                thePnl.Controls.Add(theQtyDispensed);
+                //////////////Space////////////////////////
+                Label theSpace5 = new Label();
+                theSpace5.ID = "lblSp6" + theDrugId;
+                theSpace5.Width = 20;
+                theSpace5.Text = "";
+                thePnl.Controls.Add(theSpace5);
+                //////////////////////////////////////////
+                i = i + 1;
+            }
+            PnlDrug.Controls.Add(thePnl);
+           
+            //Session["DrgPnlControls" + i] = PnlDrug.Controls;
+            
+            
+        }
+    }
+
+    #endregion
+
+    #region "Commented Code"
+    //////private void Bind_Grid()
+    //////{
+    //////    Panel1.cont 
+    //////    DataTable tmpDT = new DataTable();
+    //////    //BoundField theCol1 = new BoundField();
+    //////    //theCol1.DataField = "DrugName";
+    //////    //theCol1.SortExpression = "DrugName";
+    //////    //theCol1.HeaderText = "Drug Name";
+    //////    //theCol1.ReadOnly = true;
+
+    //////    BoundField theCol0 = new BoundField();
+    //////    theCol0.HeaderText = "DrugId";
+    //////    theCol0.DataField = "ID";
+    //////    theCol0.ItemStyle.CssClass = "textstyle";
+    //////    theCol0.ReadOnly = true;
+
+    //////    TemplateField theCol2 = new TemplateField();
+    //////    theCol2.ItemTemplate = new CreateItemTemplate(CreateItemTemplate.ConType.Dropdown, "StrengthID", (DataTable)Session["DrugStrength"]);
+    //////    theCol2.HeaderText = "Strength";
+    //////    theCol2.ItemStyle.CssClass = "textstyle";
+
+    //////    TemplateField theCol3 = new TemplateField();
+    //////    theCol3.ItemTemplate = new CreateItemTemplate(CreateItemTemplate.ConType.Dropdown, "Frequency", (DataTable)Session["DrugFrequency"]);
+    //////    theCol3.HeaderText = "Frequency";
+
+    //////    TemplateField theCol4 = new TemplateField();
+    //////    theCol4.ItemTemplate = new CreateItemTemplate(CreateItemTemplate.ConType.Textbox, "Duration", tmpDT);
+    //////    theCol4.HeaderText = "Duration";
+
+    //////    TemplateField theCol5 = new TemplateField();
+    //////    theCol5.ItemTemplate = new CreateItemTemplate(CreateItemTemplate.ConType.Textbox, "QtyPrescribed", tmpDT);
+    //////    theCol5.HeaderText = "Qty Prescribed";
+
+    //////    TemplateField theCol6 = new TemplateField();
+    //////    theCol6.ItemTemplate = new CreateItemTemplate(CreateItemTemplate.ConType.Textbox, "QtyDispensed", tmpDT);
+    //////    theCol6.HeaderText = "Qty Dispensed";
+
+    //////    //grdAdultPharmacy.Columns.Add(theCol1);
+    //////    grdAdultPharmacy.Columns.Add(theCol0);
+    //////    grdAdultPharmacy.Columns.Add(theCol2);
+    //////    grdAdultPharmacy.Columns.Add(theCol3);
+    //////    grdAdultPharmacy.Columns.Add(theCol4);
+    //////    grdAdultPharmacy.Columns.Add(theCol5);
+    //////    grdAdultPharmacy.Columns.Add(theCol6);
+        
+    //////    grdAdultPharmacy.DataBinding += new EventHandler(grdAdultPharmacy_DataBinding); 
+
+    //////    grdAdultPharmacy.DataBind();
+    //////}
+
+
+
+    ////void grdAdultPharmacy_DataBinding(object sender, EventArgs e)
+    ////{
+    ////    if (sender.GetType() == typeof(System.Web.UI.WebControls.BoundField))
+    ////    {
+    ////        string theDrugId = ((Label)sender).Text;
+    ////        DataView theDVStrength = new DataView(((DataSet)Session["MasterData"]).Tables[1]);
+    ////        theDVStrength.RowFilter = "DrugId = " + theDrugId;
+    ////        if (theDVStrength.Count > 0)
+    ////        {
+    ////            IQCareUtils theUtils = new IQCareUtils();
+    ////            DataTable theDT = theUtils.CreateTableFromDataView(theDVStrength);
+    ////            Session["DrugStrength"] = theDT;
+    ////        }
+
+    ////        DataView theDVFrequency = new DataView(((DataSet)Session["MasterData"]).Tables[2]);
+    ////        theDVFrequency.RowFilter = "DrugId = " + theDrugId;
+    ////        if (theDVFrequency.Count > 0)
+    ////        {
+    ////            IQCareUtils theUtils = new IQCareUtils();
+    ////            DataTable theDT = theUtils.CreateTableFromDataView(theDVFrequency);
+    ////            Session["DrugFrequency"] = theDT;
+    ////        }
+
+    ////    }
+    ////}
+    #endregion
+
+    #endregion
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        if (IsPostBack != true)
+        {
+            Init_Form();
+        }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (IsPostBack != true)
+        {
+            if (Session["MasterData"] == null)
+            {
+                Session["MasterData"] = theDS;
+            }
+        }
+        else
+        {
+            if (Session["DrgPanel"] != null)
+            {
+                if (Session["DrgPanel"].ToString() == "OI Treatment")
+                {
+                    BindMedicationList();
+                }
+                else
+                {
+                    CreateControls((DataSet)Session["MasterData"]);
+                }
+            }
+            else
+            {
+                CreateControls((DataSet)Session["MasterData"]);
+            }
+        }
+    }
+
+    protected void OtherMedication_Click(object sender, EventArgs e)
+    {
+        //BindMedicationList();
+        MakeDrugTable(PnlDrug);
+        PnlDrug.Controls.Clear();
+        Session["DrgPanel"] = "OI Treatment";
+        BindMedicationList();
+       
+        
+                
+    }
+    
+    private void MakeDrugTable(Control theContainer)
+    {
+        #region Create DataTable
+        DataTable theDT = new DataTable();
+        DataRow theRow;
+        DataColumn theDrugName;
+        DataColumn theStrength;
+        DataColumn theFrequency;
+        DataColumn theDuration;
+        DataColumn theQtyPrescribed;
+        DataColumn theQtyDispensed;
+
+        theDrugName = new DataColumn("DrugID");
+        theDrugName.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theDrugName);
+
+
+        theStrength = new DataColumn("Strength");
+        theStrength.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theStrength);
+
+
+        theFrequency = new DataColumn("Frequency");
+        theFrequency.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theFrequency);
+       
+        theDuration = new DataColumn("Duration");
+        theDuration.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theDuration);
+
+        theQtyPrescribed = new DataColumn("QtyPrescribed");
+        theQtyPrescribed.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theQtyPrescribed);
+
+        theQtyDispensed = new DataColumn("QtyDispensed");
+        theQtyDispensed.DataType = System.Type.GetType("System.Int32");
+        theDT.Columns.Add(theQtyDispensed);
+
+        #endregion
+        
+        
+        int DrgId = 0;
+        int theStrengthId = 0;
+        int theFrequencyId = 0;
+        int theDurationId = 0;
+        int theQtyPrescribedId = 0;
+        int theQtyDispensedId = 0;
+        
+        foreach (Control x in theContainer.Controls)
+        {
+            if (x.GetType() == typeof(System.Web.UI.WebControls.Panel))
+            {
+                MakeDrugTable(x);
+            }
+            else
+            {
+                if (x.GetType() == typeof(System.Web.UI.WebControls.Label))
+                {
+                    if (x.ID.StartsWith("drgNm")) 
+                    {
+                       DrgId = Convert.ToInt32(x.ID.Substring(5));
+                    }
+                }
+                if(x.GetType() == typeof( System.Web.UI.WebControls.DropDownList))
+                {
+                    if (x.ID.StartsWith("drgStrength"))
+                    {
+                        theStrengthId = Convert.ToInt32(((DropDownList)x).SelectedValue);
+                        
+                    }
+                    if (x.ID.StartsWith("drgFrequency"))
+                    {
+                       theFrequencyId = Convert.ToInt32(((DropDownList)x).SelectedValue);
+                    }
+                }
+                if (x.GetType() == typeof(System.Web.UI.WebControls.TextBox))
+                {
+                    if (x.ID.StartsWith("drgDuration"))
+                    {
+                        if (((TextBox)x).Text != "")
+                        {
+                            theDurationId = Convert.ToInt32(((TextBox)x).Text);
+                        }
+                    }
+                    if (x.ID.StartsWith("drgQtyPrescribed"))
+                    {
+                        if (((TextBox)x).Text != "")
+                        {
+                            theQtyPrescribedId = Convert.ToInt32(((TextBox)x).Text);
+                        }
+                    }
+                    if (x.ID.StartsWith("drgQtyDispensed"))
+                    {
+                        if (((TextBox)x).Text != "")
+                        {
+                            theQtyDispensedId = Convert.ToInt32(((TextBox)x).Text);
+                        }
+                            //theQtyDispensedId = Convert.ToInt32(((TextBox)x).Text);
+                    }
+                }
+            }
+        }
+
+        #region Store in DataTable
+
+
+        if (DrgId != 0 && theStrengthId != 0 && theFrequencyId != 0 && theDurationId != 0 && theQtyPrescribedId != 0 && theQtyDispensedId != 0)
+        {
+            theRow = theDT.NewRow();
+            theRow["DrugID"] = DrgId;
+            theRow["Strength"] = theStrengthId;
+            theRow["Frequency"] = theFrequencyId;
+            theRow["Duration"] = theDurationId;
+            theRow["QtyPrescribed"] = theQtyPrescribedId;
+            theRow["QtyDispensed"] = theQtyDispensedId;
+
+            theDT.Rows.Add(theRow);
+        }
+
+        #endregion
+
+         DrgId = 0;
+         theStrengthId = 0;
+         theFrequencyId = 0;
+         theDurationId = 0;
+         theQtyPrescribedId = 0;
+         theQtyDispensedId = 0;
+            
+    }
+}

@@ -1,0 +1,182 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Appointment Scheduler</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Appointments">
+   <meta name="description" content="Appointment Scheduler">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style type="text/css" media="screen"> 
+html, body { margin:0; 
+   padding:0; 
+   overflow: hidden; 
+   background: #FFFFFF; 
+  }
+ 
+div#printheader { 
+   display: none;
+   padding-bottom: 10px;
+   }
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }
+   </style>
+<!--[if lt IE 7]>
+<style type="text/css">
+  #idcontent {padding: 0px;} 
+  #innerdiv {padding: 10px 5px 5px 10px ;} 
+</style> 
+<![endif]-->
+<noscript>
+<style type="text/css">
+html, body { overflow: auto; }
+</style> 
+</noscript>
+<style type="text/css" media="print">
+span.f_Heading1 { color: black; }
+#idheader, #printheader img { display:none; }
+#printheader { display: block; margin-top: 20px; }
+#idcontent { margin-top: 10px; }
+</style>   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "scheduler.htm");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+<!--ZOOMSTOP-->
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Appointment Scheduler</span></h1>
+</div> 
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   &raquo;No topics above this level&laquo;
+   </p>
+   <h1 class="p_Heading1"><span class="f_Heading1">Appointment Scheduler</span></h1>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <img src="btn_prev_d.gif" border="0"
+        ><a href="pasdpadministration.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><img src="btn_next_d.gif" border="0">
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p>The scheduler allows the facility administrator to manage the patients who are expected to arrive for Today’s appointments, those patients who have missed their appointment and to schedule individual patient appointments.</p>
+<p>&nbsp;</p>
+<p>The Scheduler provides features for creating, updating and deleting appointments for a facility. It is integrated with the appointments scheduled in the Initial Evaluation and Follow up forms and monitors various dates when a patient was served by the clinic. Specific views are provided to help the facility administrator manage the patient flow within the clinic. </p>
+<p>&nbsp;</p>
+<p><span style="font-weight: bold;">Scheduler Information and Display</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The scheduler’s primary function is to help the facilities know the number and name of individuals that are expected to arrive on any particular day with a pending appointment. As well, views of patients with other types of status such as met or missed, should help the clinic manage patient adherence.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>From a clinical process perspective, the primary way appointments are made is through the Initial Evaluation and the Follow up forms. The scheduler provides the ability for healthcare providers to schedule appointments outside the forms, should they wish to. </p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The scheduler captures the following information for each appointment. Note that the appointment time and type are not required.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>Appointment date</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>Appointment reason</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>Healthcare provider</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>Appointment status</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>There are three views of appointments available from the Scheduler home page:</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>All Pending Appointments (default view)</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>All Missed Appointments </p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>All Appointments (requires a date range for display)</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>You can schedule two appointments for a person as long at the purpose is different</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>For example, you can schedule an appointment for a lab appointment (possibility for a CD4 test) outside of the forms and a follow up appointment through the forms</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>You can schedule more than one appointment for a patient on different dates with the same or different appointment purposes. </p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 34px;"><span style="font-size:10pt; font-family: 'Courier New';color:#000000;display:inline-block;width:13px;margin-left:-13px">o</span>You can schedule more than one appointment with different appointment purposes on the same date</p><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: bold;">Grace Period</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The grace period is the number of days before and after an appointment, specifying the range of dates for which a patient may attend an appointment before it is deemed “Missed.” &nbsp;For example, if the grace period is 2 days, the range for which an appointment can be attended and still be deemed as “Met” is 5 days. Suppose a patient has an appointment on May 3rd. The appointment range is from May 1-May5. </p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Grace period includes weekend</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The grace period is taken into consideration when calculating if an appointment has been met or missed</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The longer the grace period is, the fewer missed appointments your clinic will record</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The grace period is set in the Facility Setup page</p><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: bold;">Appointments Made via Patient Forms</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Only one appointment can be made through a form</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The primary provider on the form from which the appointment is created is the provider for the appointment.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>New appointments have the appointment status of “Pending.”</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If a previous appointment exists and is “Pending” and is after the visit date of the form, then it is assumed to still be a pending appointment. If the pending appointment is before the visit date, then it is assumed to be met.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>The form visit date should be saved in the IQCare database so that changes to a scheduled appointment from a form can be done in the future.</p><p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: bold;">Appointment Status Definitions</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Pending -- A patient has an appointment that he/she has yet to attend</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Met -- A patient has attended an appointment within the grace period range.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Missed -- A patient did not attend an appointment including the time of the grace period range.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Previously Missed -- A patient has missed an appointment and a new appointment is made and is pending.</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Care Ended -- A patient did not attend an appointment because care has ended.</p><p>&nbsp;</p>
+<p>See <a href="schedulerupdateprocess.htm" class="topiclink">Scheduler Update Process</a> for more details.</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: bold;">Appointment Location</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>If a patient has an appointment in one location and is transferred to a new location, then the appointment date gets transferred as well</p><p style="text-align: left; padding: 0px 0px 0px 13px; margin: 0px 0px 0px 10px;"><span style="font-size:10pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:13px;margin-left:-13px">&#8226;</span>Scheduled appointments display for the logged-in location</p><p>&nbsp;</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+var lastSlashPos = document.URL.lastIndexOf("/") > document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") : document.URL.lastIndexOf("\\");
+if( document.URL.substring(lastSlashPos + 1, lastSlashPos + 4).toLowerCase() != "~hh" )
+{
+ if (document.all) setTimeout(function() {nsrInit();},20); 
+    else nsrInit();
+ } 
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

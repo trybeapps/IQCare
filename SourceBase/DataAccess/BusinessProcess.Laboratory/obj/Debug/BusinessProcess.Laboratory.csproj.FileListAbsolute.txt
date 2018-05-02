@@ -1,0 +1,10 @@
+C:\IQCare 3.6.0\References\BusinessProcess.Laboratory.dll
+C:\IQCare 3.6.0\References\BusinessProcess.Laboratory.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.pdb
+C:\Projects\IQCare 3.6.0\References\BusinessProcess.Laboratory.dll
+C:\Projects\IQCare 3.6.0\References\BusinessProcess.Laboratory.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.csprojResolveAssemblyReference.cache
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.dll
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Laboratory\obj\Debug\BusinessProcess.Laboratory.pdb

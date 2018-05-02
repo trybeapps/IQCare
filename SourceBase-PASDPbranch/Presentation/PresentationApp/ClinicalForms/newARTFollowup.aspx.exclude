@@ -1,0 +1,388 @@
+<%@ Page Language="C#" MasterPageFile="~/ClinicalForms/ClinicalHeaderFooter.master" AutoEventWireup="true" CodeFile="newARTFollowup.aspx.cs" Inherits="ClinicalForms_newARTFollowup" Title="Untitled Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="clinicalheaderfooter" Runat="Server">
+<form id="artfollowup" method="post" runat="server">
+<H1 class="margin">ART Follow-up Form</H1>
+<DIV class="border center formbg">
+<TABLE cellSpacing="6" cellPadding="0" width="100%" border="0">
+<TBODY>
+<TR>
+<TD class="border pad5 whitebg" align="center" colSpan="2">
+<LABEL class="patientInfo">Patient Name:</LABEL>
+<asp:Label ID="lblpatientname" runat="server" Text="Mary Longlastname"></asp:Label>
+<LABEL class="patientInfo">*Patient ID:</LABEL> 
+<asp:Label ID="lblpatientenrolment" runat="server" Text="444545"></asp:Label>
+<LABEL class="patientInfo">Existing Patient ID #:</LABEL>
+<asp:Label ID="lblexisclinicid" runat="server" Text="12345678-444444-596A"></asp:Label>
+</TD>
+</TR>
+<TR>
+<TD class="border pad5 whitebg" width="50%">
+<LABEL class="required right35">*Visit Date:</LABEL>
+<input id=txtvisitDate maxLength=11 size=8 name=visitDate runat="server"/>
+<IMG onclick="w_displayDatePicker('<%= txtvisitDate.ClientID%>');" height=22  alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 
+border=0><SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN> 
+</TD>
+<TD class="border pad5 whitebg">
+<LABEL class="right25">Last CD4 Count:</LABEL>
+<asp:TextBox ReadOnly=true ID=txtTestCD4Results runat="server" Width="12%"></asp:TextBox>
+<SPAN  class=smallerlabel>c/mm<sup>3</sup></SPAN> 
+<LABEL class=margin10>Date:</LABEL>
+<INPUT readonly = readonly id=txtTestResultsDate maxLength=11 size=8 name=TestResultsDate runat="server"> 
+<IMG  id = ImgCD4 onclick="w_displayDatePicker('<%=txtTestResultsDate.ClientID%>')" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 border=0 runat="server">
+<SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN>
+</TD>
+</tr>
+<tr>
+<TD class="border pad5 whitebg" align ="left">
+<LABEL>CD4 Prior to Starting ARVs:</LABEL><br />
+<label class=right25> </label>
+<asp:TextBox ID=txtpriorARVsCD4 runat="server" Width="12%"></asp:TextBox>
+<SPAN class=smallerlabel>c/mm<SUP>3</SUP></SPAN> 
+<LABEL class=margin10>Date:</LABEL>
+<INPUT id=txtpriorARVsCD4Date maxLength=11 size=8 name=priorARVsCD4Date runat="server"> 
+<IMG onclick="w_displayDatePicker('<%= txtpriorARVsCD4Date.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22  border=0>
+<SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN>
+</td>
+<TD class="border pad5 whitebg">
+<LABEL class="right25">Last Viral Load:</LABEL><br />
+<label class=right25> </label>
+<asp:TextBox ReadOnly=true id=txtmostRecentViralLoad runat="server" Width="12%"></asp:TextBox>
+<SPAN  class=smallerlabel>c/ml</SPAN> 
+<LABEL class=margin10>Date:</LABEL>
+<INPUT readonly = readonly id=txtmostRecentViralLoadDate maxLength=11 size=8 name=mostRecentViralLoadDate runat="server"> 
+<IMG id = ImgMostRecentViralLoad onclick="w_displayDatePicker('<%= txtmostRecentViralLoadDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 border=0 runat="server">
+<SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN>
+</td>
+</tr>
+<tr>  
+<TD class="border pad5 whitebg">
+<LABEL class=right35 for=RegimenType>Regimen:</LABEL>
+<asp:TextBox ID=txtRegimenType runat="server"   ReadOnly="true" Width="40%"></asp:TextBox>
+</TD>
+<TD class="border pad5 whitebg" width="50%">
+<LABEL class="right35">Current Regimen Began: </LABEL>
+<input id=txtPrescribedARVStartDate maxLength=11 size=8 readonly = "readonly" runat="server"/>
+<IMG id=ImgPrescribedARVStartDate onclick="w_displayDatePicker('<%=txtPrescribedARVStartDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 
+border=0 runat="server"><SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN> 
+</TD>
+</tr>
+ <!-- if gender is female then-->
+<TR>
+<TD id = "tdPregnant" class="form" runat = "server">
+<LABEL class="right35">Pregnant: </LABEL>
+<INPUT id=rdopregnantYes onfocus=up(this); onclick=down(this); type=radio value=Y name=pregnant runat="server"> 
+<LABEL>Yes</LABEL> 
+<INPUT id=rdopregnantNo onfocus=up(this); onclick=down(this); type=radio  value=N name=pregnant runat="server"> 
+<LABEL>No</LABEL> 
+</TD>
+<TD id = "tdLMP" class="form" runat = "server">
+<LABEL class=right35 for=LMP>LMP:</LABEL>
+<INPUT id=txtLMPdate maxLength=11 size=8 name=LMP runat="server"> 
+<IMG onclick="w_displayDatePicker('<%=txtLMPdate.ClientID%>');" height=22 alt="Date Helper" hspace=3 
+src="../images/cal_icon.gif" width=22 border=0>
+<SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN> 
+</TD>
+</TR><!-- end if gender is female -->
+</TBODY>
+</TABLE>
+</DIV><br>
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>Adherence</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD class="border pad5 whitebg" width="65%" valign=top>   
+<label class=right50>Number of Doses Missed:</label>
+<br />
+<label class="right60 toppad">Last Week:</label> 
+<div id=MissedLastWeek style="display:inline">
+<input type=text id=txtMissedLastWeek name=MissedLastWeek size="2" runat="server"/>
+</div>
+<input type=checkbox ID="chMissedLastWeeknone" name=MissedLastWeeknone runat="server" />
+<span class=smalllabel>None</span><br />
+<label class="right60 toppad">Last Month:</label> 
+<div id=MissedLastMonth style="display:inline">
+<input type=text id=txtMissedLastMonth name=MissedLastMonth size="2"  runat = "server"/>
+</div>
+<input type=checkbox ID="chMissedLastMonthnone" name=MissedLastMonthnone  runat="server" />
+<span class=smalllabel>None</span>
+</td>
+<TD class="border pad5 whitebg" valign=top>
+<label class="right30">DOT:</label>
+<asp:TextBox ID=txtNumDOTPerWeek  runat="server" Width=30></asp:TextBox>
+<span class="smalllabel">times/week</span>
+<br />
+<label class="right30 toppad">Home Visits:</label>
+<asp:TextBox ID=txtNumHomeVisitsPerWeek runat="server" Width=30></asp:TextBox>
+<span class="smalllabel">times/week</span>
+<br />
+<label class="right30 toppad">Support Group:</label><input type=checkbox ID="ckSupportGroup" name=SupportGroup runat="server" />
+</td>
+</TR>
+<tr>
+<TD class="border pad5 whitebg" valign=top>
+<label class=right50>Rx was interrupted (unintentional):</label> <input type=radio ID="rdoInterrupted" name=intStop value="interrupted" runat="server" onfocus=up(this); onclick="toggle('interruptedDate'); show('interruptedDate'); hide('stopDate');" /> <br />
+<div id=interruptedDate style="display:none;">
+<LABEL class=right40>Date: </LABEL>
+<input id=txtInterruptedDate maxLength=11 size=8 name=InterruptedDate runat="server"/>
+<IMG onclick="w_displayDatePicker('<%=txtInterruptedDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 
+border=0><SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN> 
+<input type=text id=TxtInterruptedNumDays name=InterruptedNumDays size=2  runat="server"/> <span class="smalllabel"># of days</span></div>
+<br />
+<label class="right50 toppad">Rx was stopped (intentional):</label> <input type=radio ID="rdostopped" name=intStop runat="server" onfocus=up(this); onclick="toggle('stopDate'); show('stopDate'); hide('interruptedDate');" value="stopped" /><br />  
+<div id=stopDate style="display:none">
+<LABEL class=right40>Date: </LABEL>
+<input id=txtstoppedDate maxLength=11 size=8 name=stoppedDate runat="server"/>
+<IMG onclick="w_displayDatePicker('<%=txtstoppedDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 
+border=0><SPAN class=smallerlabel>(DD-MMM-YYYY)</SPAN> 
+<input type=text id=txtstoppedNumDays name=stoppedNumDays size=2  runat="server"/> <span class="smalllabel"># of days</span></div>
+<br />
+<label class="right50 toppad">Patient reports taking herbal medications:</label> <input type=checkbox ID="ckHerbalMeds" name=HerbalMeds runat="server" />
+</td>
+<td class="border pad5 whitebg" valign=top>
+<label class="margin">Reason Missed:</label>
+<DIV class=checkbox nowrap="noWrap">
+<asp:CheckBoxList ID=cblAdheranceMissedReason RepeatLayout="Flow" Width="0%" runat ="server">
+</asp:CheckBoxList>
+</DIV>
+</td> 
+</tr>
+</TBODY>
+</TABLE>
+</DIV><br />
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>Presenting Complaints</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD class="border pad5 whitebg" width="50%" colspan="2">
+<LABEL>Presenting Complaints:</LABEL>
+<INPUT id=chkpresentingComplaintsNone type=checkbox CHECKED value=None name=presentingComplaintsNone runat="server"> 
+<SPAN class=smalllabel>None</SPAN><INPUT id=chkpresentingComplaintsNonehidden CHECKED value=None  class="textstylehidden" type=checkbox runat="server"> 
+<DIV id=presentingComplaintsShow style="DISPLAY: none" runat="server"><BR>
+<DIV class=checkbox nowrap="noWrap">
+<asp:CheckBoxList ID=cblPresentingComplaints RepeatLayout="Flow" Width="20%" runat ="server">
+</asp:CheckBoxList>
+</DIV>
+</DIV></TD>
+</TR></TBODY></TABLE><BR></DIV>
+<br>
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>Physical Exam</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD class="border pad5 whitebg formcenter" colSpan=2>
+<LABEL>Temp:</LABEL>
+<asp:TextBox ID=txtphysTemp runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel>C</SPAN> 
+<LABEL class=margin15>RR:</LABEL>
+<asp:TextBox ID=txtphysRR runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel> bpm</SPAN> 
+<LABEL class=margin15>HR:</LABEL>
+<asp:TextBox ID=txtphysHR runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel> bpm</SPAN> 
+<LABEL class=margin15>BP:</LABEL>
+<asp:TextBox ID=txtphysBPDiastolic runat="server" maxLength=4  Width=5%></asp:TextBox>/
+<asp:TextBox ID=txtphysBPSystolic runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel> (mm/Hg)</SPAN> 
+<LABEL class=margin15>HT:</LABEL>
+<asp:TextBox ID=txtphysHeight runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel> cm</SPAN> 
+<LABEL class=margin15>WT:</LABEL>
+<asp:TextBox ID=txtphysWeight runat="server" maxLength=4  Width=5%></asp:TextBox>
+<SPAN class=smallerlabel> kg</SPAN>
+<LABEL class=margin15>Pain:</LABEL>
+<select id=ddlPain name=pain runat="server">
+    <OPTION value="" selected>Select</OPTION> 
+    <OPTION value=1>1</OPTION> 
+    <OPTION value=2>2</OPTION> 
+    <OPTION value=3>3</OPTION>
+    <OPTION value=4>4</OPTION>
+    <OPTION value=5>5</OPTION>
+    <OPTION value=6>6</OPTION>
+    <OPTION value=7>7</OPTION>
+    <OPTION value=8>8</OPTION>
+    <OPTION value=9>9</OPTION>
+    <OPTION value=10>10</OPTION>
+</select>
+</TD>
+</TR>
+<TR>
+<TD class="border pad5 whitebg" vAlign=top colSpan=2>
+<LABEL class=right20>ARV Side Effects:</LABEL> 
+<INPUT id=rdoARVSideEffectsNone onfocus=up(this); onclick="down(this);hide('sideEffectsSelected');" type=radio value=none name=SideEffects runat="server">
+<SPAN class=smallerlabel>None</SPAN>
+<INPUT id=rdoARVSideEffectsNotDocumented onfocus=up(this); onclick="down(this);hide('sideEffectsSelected');" type=radio value="Not Documented" name=SideEffects runat="server">
+<SPAN class=smallerlabel>Not Documented</SPAN>
+<INPUT id=rdoARVSideEffectsYes onfocus=up(this); onclick="down(this);show('sideEffectsSelected');" type=radio value=show 
+name=SideEffects runat="server">
+<SPAN class=smallerlabel>Enter ARV Side Effects</SPAN> 
+<DIV id=sideEffectsSelected style="DISPLAY: none">
+<DIV class=checkboxLeft nowrap="noWrap">
+<asp:CheckBoxList id=cblARVSideEffectleft RepeatLayout="Flow" Width="20%" runat="server">
+</asp:CheckBoxList>
+</DIV>
+<DIV class=checkboxRight nowrap="noWrap">
+<asp:CheckBoxList id=cblARVSideEffectright RepeatLayout="Flow" Width="20%" runat="server">
+</asp:CheckBoxList>
+</DIV></DIV></TD>
+</TR>
+<TR>
+<TD class="border pad5 whitebg" vAlign=top colSpan=2>
+<LABEL class=right20>OIs or AIDS Defining Illnesses:</LABEL> 
+<INPUT id=rdoOIsAIDsIllnessNone onfocus=up(this); onclick="down(this);hide('assocSelected');" type=radio value=none name=assocNone runat="server"/>
+<SPAN class=smallerlabel>None</SPAN>
+<INPUT id=rdoOIsAIDsIllnessNotDocumented onfocus=up(this); onclick="down(this);hide('assocSelected');" type=radio value="Not Documented" name=assocNone runat="server">
+<SPAN class=smallerlabel>Not Documented</SPAN>
+<INPUT id=rdoOIsAIDsIllnessYes onfocus=up(this); onclick="down(this);show('assocSelected');" type=radio value=show name=assocNone runat="server">
+<SPAN class=smallerlabel>Enter Illnesses</SPAN> 
+<DIV id=assocSelected style="DISPLAY: none">
+<DIV class=checkboxLeft nowrap="noWrap">
+<asp:CheckBoxList ID=cblOIsAIDsleft RepeatLayout="Flow" Width="10%" runat="server"></asp:CheckBoxList>
+</DIV>
+<DIV class=checkboxRight nowrap="noWrap">
+<asp:CheckBoxList ID=cblOIsAIDsright RepeatLayout="Flow" Width="20%" runat="server"></asp:CheckBoxList>
+</DIV></DIV></TD>
+</TR>
+</tbody>
+</table>
+<br/>
+</div>
+<br/>
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>Assessment</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD class="border pad5 whitebg formcenter" vAlign=top colspan=2>
+<LABEL>Clinical Assessment:</LABEL>
+<DIV id=assessment nowrap="nowrap">
+<SPAN class=smalllabel>
+<asp:CheckBoxList ID=cblAssessment runat=server RepeatLayout="Flow" RepeatDirection=Horizontal Width="0%" CellPadding="0" CellSpacing="0">
+</asp:CheckBoxList>
+</SPAN>
+</DIV>
+</TD>
+</TR>
+<TR> 
+<TD class="border pad5 whitebg" vAlign=middle width="50%">
+<LABEL class="right35">WHO Stage:</LABEL>
+<asp:DropDownList ID=ddlWHOStage runat="server">
+<asp:ListItem Value=0 Selected="true">Select</asp:ListItem>
+<asp:ListItem Value=270>I</asp:ListItem>
+<asp:ListItem Value=271>II</asp:ListItem>
+<asp:ListItem Value=272>III</asp:ListItem>
+<asp:ListItem Value=273>IV</asp:ListItem>
+</asp:DropDownList>
+</TD>
+<TD class="border pad5 whitebg" vAlign=middle width="50%">
+<LABEL class="right35">WAB Stage:</LABEL>
+<asp:DropDownList ID=ddlphysWABStage runat="server">
+<asp:ListItem Value=0 Selected="true">Select</asp:ListItem>
+<asp:ListItem Value=267>Working</asp:ListItem>
+<asp:ListItem Value=268>Ambulatory</asp:ListItem>
+<asp:ListItem Value=269>Bedridden</asp:ListItem>
+</asp:DropDownList>
+<BR>
+</TD>
+</TR>
+</tbody>
+</table>
+<H2 class=forms align=left>Plan</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+   <TR>
+    <TD class="border pad5 whitebg formcenter" colspan="2" valign="middle">
+    <LABEL class="required">*ARV Therapy:</LABEL> 
+    <SELECT id=lstclinPlanFU onclick=specifyChangeStop(this.id); onchange=specifyChangeStop(this.id); name=clinPlanFU runat="server">
+    <OPTION value=0 selected>Select</OPTION> 
+    <OPTION value=277>Treatment not indicated now</OPTION> 
+    <OPTION value=278>Continue current treatment</OPTION> 
+    <OPTION value=279>Restart treatment</OPTION> 
+    <OPTION value=280>Start new treatment</OPTION> 
+    <OPTION value=281>Change regimen</OPTION> 
+    <OPTION value=282>Stop treatment</OPTION>
+   </SELECT>
+    <DIV id=arvTherapyChange style="DISPLAY: none">
+    <LABEL class="required margin80">*Change Regimen Reason:</LABEL> 
+    <asp:DropDownList ID=ddlArvTherapyChangeCode runat="server">
+    </asp:DropDownList>
+    <DIV id=otherarvTherapyChangeCode style="DISPLAY: none">
+    <LABEL class="required right45" for=arvTherapyChangeCodeOtherName>*Specify:</LABEL> 
+    <INPUT id=txtarvTherapyChangeCodeOtherName maxLength=20 size=10 name=arvTherapyChangeCodeOtherName runat="server"></DIV>
+    </DIV>
+    
+     <DIV id=arvTherapyStop style="DISPLAY: none">
+     <LABEL class="required margin80">*Stop Regimen Reason:</LABEL>
+     <asp:DropDownList ID=ddlArvTherapyStopCode runat="server">
+     </asp:DropDownList>
+     <DIV id=otherarvTherapyStopCode style="DISPLAY: none">
+     <LABEL class="required right45" for=arvTherapyStopCodeOtherName>*Specify:</LABEL> 
+     <INPUT id=txtarvTherapyStopCodeOtherName maxLength=20 size=10 name=arvTherapyStopCodeOtherName runat="server"></DIV>
+    </DIV>
+ </TD>
+ </TR>
+ </TBODY>
+ </TABLE>
+<BR>
+</DIV>
+<br/>
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>Appointment and Signature</H2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class="border pad5 whitebg">
+    <LABEL class="right50">When is the patient's next appointment?</LABEL> 
+    <SELECT id=lstappPeriod name=appPeriod runat="server"> 
+    <OPTION value=0 selected>Select</OPTION> 
+    <OPTION value=7>1 week</OPTION> 
+    <OPTION value=14>2 weeks</OPTION> 
+    <OPTION value=30>4 weeks</OPTION> 
+    <OPTION value=60>2 months</OPTION> 
+    <OPTION value=90>3 months</OPTION> 
+    <OPTION value=180>6 months</OPTION></SELECT></TD>
+    
+    <TD class="border pad5 whitebg" >
+    <LABEL class="right40">Appointment Reason:</LABEL> 
+    <asp:DropDownList ID=ddlAppReason runat="server"></asp:DropDownList>
+ </TD>
+ </TR>
+ <TR>
+ 
+    <TD class="border pad5 whitebg" vAlign=top>
+    <LABEL class=right50>Specify Date:</LABEL> 
+    <INPUT id=txtappDate maxLength=11 size=8 name=appDate runat="server"> 
+      <IMG onclick="w_displayDatePicker('<%=txtappDate.ClientID %>');" height=22 alt="Date Helper" 
+      hspace=5 src="../images/cal_icon.gif" width=22 border=0><SPAN 
+      class=smallerlabel id=appDatespan>(DD-MMM-YYYY)</SPAN> </TD>
+    <TD class="border pad5 whitebg" valign=middle >
+    <LABEL class="right40">Signature:</LABEL> 
+    <asp:DropDownList ID=ddlCounsellorSignature runat="server"></asp:DropDownList>
+   <%-- 
+	<SELECT ID="lstpharmSignature" name="pharmSignature" onchange="specify(this.id);"> 
+    <OPTION value="">-Select-</OPTION> 
+    <OPTION value="No signature">No signature</OPTION> 
+    <OPTION value="Patient's signature">Patient's signature</OPTION> 
+	<option value="Adherance counsellor signature">Adherance counsellor signature</option>
+	</select>
+    <DIV id="otherlstpharmSignature" style="display:none;">
+    <LABEL class="margin20">Specify counsellor Name:</LABEL> 
+    <INPUT id="txtcounsellorName" name="counsellorName" runat="server">
+    </DIV>--%>
+    </TD></TR>
+<TR>
+<TD class="pad5 center" colSpan=2><BR>
+<asp:Button ID="btnsave" Text="Save" runat="server" OnClick="btnsave_Click" />
+<asp:Button ID="btndataquality" Text="Data Quality Check" runat="server" OnClick="btndataquality_Click" />
+<asp:Button ID="btnclose" Text="Close" runat="server" OnClick="btnclose_Click"/>
+<asp:Button ID="btnOk" Text="OK" CssClass = "textstylehidden" runat="server" OnClick="theBtn_Click" /> 
+<%-- <INPUT type=submit value="Save" name=submit id="btnsave" runat="server"> 
+<INPUT type=submit value=" Data Quality Check " name=complete id="btncomplete" runat="server"> --%>
+</TD></TR>
+</TBODY></TABLE></DIV>
+</form>
+
+</asp:Content>
+

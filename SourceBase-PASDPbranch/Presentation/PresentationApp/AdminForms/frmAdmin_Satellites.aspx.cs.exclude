@@ -1,0 +1,118 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using Interface.Administration;
+using Application.Common;
+using Application.Interface;
+using Interface.Security;
+using Application.Presentation;
+
+public partial class AdminForms_frmAdmin_Satellites : System.Web.UI.Page
+{
+    private void BindGrid()
+    {
+        BoundField theCol0 = new BoundField();
+        theCol0.HeaderText = "ID";
+        theCol0.DataField = "ID";
+        theCol0.HeaderStyle.CssClass = "textstylehidden";
+        theCol0.ItemStyle.CssClass = "textstylehidden";
+        theCol0.ReadOnly = true;
+
+        BoundField theCol1 = new BoundField();
+        theCol1.HeaderText = "Priority";
+        theCol1.DataField = "SRNo";
+        theCol1.ItemStyle.CssClass = "textstyle";
+        theCol1.SortExpression = "SRNo";
+        theCol1.ReadOnly = true;
+
+        BoundField theCol2 = new BoundField();
+        theCol2.HeaderText = "SatelliteID";
+        theCol2.DataField = "SatelliteID";
+        theCol2.ItemStyle.CssClass = "textstyle";
+        theCol2.SortExpression = "SatelliteID";
+        theCol2.ItemStyle.Font.Underline = true;
+        theCol2.ReadOnly = true;
+
+        BoundField theCol3 = new BoundField();
+        theCol3.HeaderText = "SatelliteName";
+        theCol3.DataField = "Name";
+        theCol3.ItemStyle.CssClass = "textstyle";
+        theCol3.SortExpression = "SatelliteName";
+        theCol3.ItemStyle.Font.Underline = true;
+        theCol3.ReadOnly = true;
+
+        BoundField theCol4 = new BoundField();
+        theCol4.HeaderText = "Status";
+        theCol4.DataField = "Status";
+        theCol4.SortExpression = "Status";
+        theCol4.ItemStyle.CssClass = "textstyle";
+        theCol4.ReadOnly = true;
+
+        ButtonField theBtn = new ButtonField();
+        theBtn.ButtonType = ButtonType.Link;
+        theBtn.CommandName = "Select";
+        theBtn.HeaderStyle.CssClass = "textstylehidden";
+        theBtn.ItemStyle.CssClass = "textstylehidden";
+
+        GrdSatellite.Columns.Add(theCol0);
+        GrdSatellite.Columns.Add(theCol1);
+        GrdSatellite.Columns.Add(theCol2);
+        GrdSatellite.Columns.Add(theCol3);
+        GrdSatellite.Columns.Add(theCol4);
+        GrdSatellite.Columns.Add(theBtn);
+
+        GrdSatellite.DataBind();
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        ISatellite SatelliteMgr;
+        SatelliteMgr = (ISatellite)ObjectFactory.CreateInstance("BusinessProcess.Administration.BSatellite, BusinessProcess.Administration");
+        DataTable theDT = SatelliteMgr.GetAllSatellite();
+        GrdSatellite.DataSource = theDT;
+        BindGrid();
+
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        string url = string.Format("{0}?Redirect={1}", "frmAdmin_AddUpdateSatellite.aspx", 2);
+        Response.Redirect(url);
+    }
+    protected void GrdSatellite_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            e.Row.Attributes.Add("onmouseover", "this.style.cursor='hand';this.style.BackColor='#666699';");
+            e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='';");
+            e.Row.Attributes.Add("onclick", Page.ClientScript.GetPostBackEventReference(GrdSatellite, "Select$" + e.Row.RowIndex.ToString()));
+        }
+    }
+
+    protected void GrdSatellite_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+    {
+        int thePage = GrdSatellite.PageIndex;
+        int thePageSize = GrdSatellite.PageSize;
+
+        GridViewRow theRow = GrdSatellite.Rows[e.NewSelectedIndex];
+        int theIndex = thePageSize * thePage + theRow.RowIndex;
+
+        int SatelliteId = Convert.ToInt32(theRow.Cells[0].Text.ToString());
+        string theUrl = string.Format("{0}SatelliteId={1}&Redirect={2}", "frmAdmin_AddUpdateSatellite.aspx?name=" + "Edit" + "&", SatelliteId, 2);
+        Response.Redirect(theUrl);
+    }
+    protected void btnClose_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("frmAdmin_CustomItems.aspx");
+    }
+}

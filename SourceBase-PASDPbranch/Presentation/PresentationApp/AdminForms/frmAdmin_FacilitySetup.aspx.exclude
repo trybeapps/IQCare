@@ -1,0 +1,63 @@
+<%@ Page Language="C#" MasterPageFile="~/AdminForms/AdminHeaderFooter.master" AutoEventWireup="true" CodeFile="frmAdmin_FacilitySetup.aspx.cs" Inherits="frmAdmin_FacilitySetup" Title="Untitled Page" %>
+<%@ MasterType VirtualPath="~/AdminForms/AdminHeaderFooter.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="adminheaderfooter" Runat="Server">
+<form id="facilitysetup" method="post" runat="server">
+<h3 class=margin>Facility Identification</h3>
+<div class ="border center formbg">
+<table class = "pad5 formbg" width="100%"  border="0" cellpadding="0" cellspacing="6">
+   <tr>
+   <td class="border pad5 whitebg" valign="top" width = 50%>
+   <label class=right for=lblFacility_name>Facility Name:</label>
+   <asp:TextBox id="txtfacilityname" maxlength="20" runat="server"></asp:TextBox>
+   </td>
+   <td class="border pad5 whitebg" valign="top" width = 50%>
+   <label class=right for=lblcountry>Country number:</label>
+   <asp:TextBox id="txtcountryno" maxlength="20" runat="server">695</asp:TextBox>
+   </td>
+   </tr>
+   <tr>
+   <td class="border pad5 whitebg" valign="top" width = 50%>
+   <label class=right for=lblPOS>LPTF number:</label>
+   <asp:TextBox id="txtLPTF" maxlength="25" runat="server">111</asp:TextBox>
+   </td>
+   <td class="border pad5 whitebg" valign="top" width = 50%>
+   <label class=right for=lblSatellitenumber>Satelite number:</label>
+   <asp:TextBox id="txtsatliteno" maxlength="20" runat="server">00</asp:TextBox>
+   </td>
+   </tr>
+   <tr>
+   <td class="border pad5 whitebg" valign="top" width = 50% nowrap ="nowrap" >
+   <label class=right for=lblimage>Facility Login Image:</label>
+       <input id="FileLoad" style="width: 210px" type="file" runat = "server" /></td>
+   <td class="border pad5 whitebg" valign="top" width = 50%>
+   <label class=right for=lblSatellitenumber>Appointment Grace Period:</label>
+   <asp:TextBox id="txtGrace" maxlength="20" runat="server">00</asp:TextBox>
+   </td>
+   </tr>
+   
+   <tr>
+   <td class="border pad5 whitebg" valign="top" width = 50% > 
+          <label class=right40 for=lblPEPFAR>PEPFAR funding start date:</label>
+          <asp:TextBox id=txtPEPFAR_Fund maxlength=10 runat ="server"></asp:TextBox>
+                <IMG onclick="w_displayDatePicker('<%= txtPEPFAR_Fund.ClientID %>');" height=22 alt="Date Helper" hspace=3 
+                src="../images/cal_icon.gif" width=22 border=0><span class="smallerlabel">(DD/MM/YYYY)</span>
+                </td>
+  
+  <td class="border pad5 whitebg" valign="top" width = 50% > 
+            <label class=right for=lblcurrency> Currency:</label>&nbsp;
+      <asp:DropDownList ID="cmbCurrency" runat="server" Width="188px">
+          <asp:ListItem>xxxx</asp:ListItem>
+      </asp:DropDownList></td>
+     </tr>
+     <tr>
+    <td class="center" colspan=2>
+        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+        <asp:Button ID="btnCancel" runat="server" Text="Reset" />
+        <asp:Button ID="btnExit" runat="server" Text="Cancel" OnClick="btnExit_Click" /></td>
+  </tr>
+   </table>
+</div><br />
+</form>
+    <br />
+</asp:Content>
+

@@ -1,0 +1,5 @@
+C:\IQCare 3.6.0\References\Interface.Service.dll
+C:\IQCare 3.6.0\References\Interface.Service.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\Interface.Service\obj\Release\Interface.Service.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\Interface.Service\obj\Release\Interface.Service.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\Interface.Service\obj\Release\Interface.Service.csprojResolveAssemblyReference.cache

@@ -1,0 +1,232 @@
+#region "Namespace"
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+
+using Interface.Administration;
+using Application.Presentation;
+using Application.Common;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Excel=Microsoft.Office.Interop.Excel;
+#endregion 
+
+
+public partial class frmadmin_Createexport : System.Web.UI.Page
+{
+    #region "Variable Declaration"
+    String fromdate;
+    String toDate;
+
+    #endregion
+    #region "User Functions"
+    private Boolean FieldValidation1()
+    {
+        if (FUdatatopath.PostedFile.FileName.Trim()=="")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "File Name";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            FUdatatopath.Focus();
+            return false;
+        }
+        return true;
+    }
+    private Boolean FieldValidationText()
+    {
+        string strid = FUdatatopath.PostedFile.FileName.Trim();
+
+        string[] arrstring = new string[2];
+        char[] splitter = { '.' };
+        if (strid.ToString() != "")
+        {
+            arrstring = strid.Split(splitter);
+        }
+        if (Convert.ToString(arrstring[1]) != "txt")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "File Name Extension";
+            IQCareMsgBox.Show("FileFormat", theBuilder, this);
+            FUdatatopath.Focus();
+            return false;
+        }
+        return true;
+    }
+    private Boolean FieldValidationXls()
+    {
+        string strid = FUdatatopath.PostedFile.FileName.Trim();
+
+        string[] arrstring = new string[2];
+        char[] splitter = { '.' };
+        if (strid.ToString() != "")
+        {
+            arrstring = strid.Split(splitter);
+        }
+        if (Convert.ToString(arrstring[1]) != "xls")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "File Name Extension";
+            IQCareMsgBox.Show("FileFormat", theBuilder, this);
+            FUdatatopath.Focus();
+            return false;
+        }
+        return true;
+    }
+    private void TOExcel(DataTable ds)
+    {
+
+        Excel.Application oAppln;
+        Excel.Workbook oWorkBook;
+        Excel.Worksheet oWorkSheet;
+        Excel.Range oRange;
+
+
+
+        try
+        {
+
+            oAppln = new Excel.Application();
+            oWorkBook = (Excel.Workbook)(oAppln.Workbooks.Add(true));
+            oWorkSheet = (Excel.Worksheet)oWorkBook.ActiveSheet;
+            oWorkSheet.Name = "Enrollment";
+            int iRow = 2;
+
+       
+            if (ds.Rows.Count > 0)
+            {
+      
+                for (int j = 0; j < ds.Columns.Count; j++)
+                {
+
+                    oWorkSheet.Cells[1, j + 1] = ds.Columns[j].ColumnName;
+
+                }
+        
+
+                for (int rowNo = 0; rowNo < ds.Rows.Count; rowNo++)
+                {
+
+                    for (int colNo = 0; colNo < ds.Columns.Count; colNo++)
+                    {
+  
+                        oWorkSheet.Cells[iRow, colNo + 1] = ds.Rows[rowNo][colNo].ToString();
+
+                    }
+  
+                    iRow++;
+
+                }
+
+            }
+
+            oRange = oWorkSheet.get_Range("A1", "CD");
+            oRange.EntireColumn.AutoFit();
+            oAppln.UserControl = false;
+  
+            string strFile = FUdatatopath.PostedFile.FileName.Trim();
+
+            //oAppln.Visible = true;
+
+            oWorkBook.SaveAs(strFile, Excel.XlFileFormat.xlWorkbookNormal, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null,null);
+            oWorkBook.Close(null, null, null);
+            oAppln.Workbooks.Close();
+            oAppln.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(oRange);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(oAppln);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(oWorkSheet);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(oWorkBook);
+            oWorkSheet = null;
+            oWorkBook = null;
+            oAppln = null;
+            GC.Collect(); 
+        }
+
+        catch (Exception theException)
+        {
+
+            theException.Message.ToString();
+
+        }
+    }
+
+
+    #endregion 
+    #region "Events"
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Page.IsPostBack != true)
+        {
+            txtfrom.Attributes.Add("OnBlur", "DateFormat(this,this.value,event,true,'3')");
+            txtfrom.Attributes.Add("onkeyup", "DateFormat(this,this.value,event,false,'3')");
+            txtto.Attributes.Add("OnBlur", "DateFormat(this,this.value,event,true,'3')");
+            txtto.Attributes.Add("onkeyup", "DateFormat(this,this.value,event,false,'3')");
+        }
+    }
+    
+    protected void btnexportCSV_Click(object sender, EventArgs e)
+    {
+        if (FieldValidation1() == false)
+        {
+            return;
+        }
+        if (FieldValidationText() == false)
+        {
+            return;
+        }
+        IExport ExportManager = (IExport)ObjectFactory.CreateInstance("BusinessProcess.Administration.BExport, BusinessProcess.Administration");
+        IQCareUtils theUtil = new IQCareUtils();
+        
+            fromdate=theUtil.MakeDate(txtfrom.Value);
+            toDate=theUtil.MakeDate(txtto.Value);
+        
+        DataSet theDS = ExportManager.GetPatientResultstxtXsl(Convert.ToInt32(ddreportyear.SelectedValue),Convert.ToDateTime(fromdate),Convert.ToDateTime(toDate));
+
+        string path = FUdatatopath.PostedFile.FileName.Trim();
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            if (theDS != null && theDS.Tables[0].Rows.Count > 0)
+            {
+                
+                foreach (DataRow dr in theDS.Tables[0].Rows)
+                {
+                    sw.WriteLine(dr[0] + "\t" + dr[1] + "\t" + dr[2] + "\t" + dr[3]+ "\t" + dr[4] + "\t" + dr[5]+ "\t" + dr[6]+ "\t" + dr[7] + "\t" + dr[8] );
+                }
+            }
+            
+        }
+    }
+    protected void btnexportExcel_Click(object sender, EventArgs e)
+    {
+        if (FieldValidation1() == false)
+        {
+            return;
+        }
+        if (FieldValidationXls() == false)
+        {
+            return;
+        }
+        IExport ExportManager = (IExport)ObjectFactory.CreateInstance("BusinessProcess.Administration.BExport, BusinessProcess.Administration");
+        IQCareUtils theUtil = new IQCareUtils();
+        
+            fromdate=theUtil.MakeDate(txtfrom.Value);
+            toDate=theUtil.MakeDate(txtto.Value);
+        
+        DataSet theDS = ExportManager.GetPatientResultstxtXsl(Convert.ToInt32(ddreportyear.SelectedValue),Convert.ToDateTime(fromdate),Convert.ToDateTime(toDate));
+        if (theDS != null && theDS.Tables[0].Rows.Count > 0)
+        {
+            DataTable theDT=theDS.Tables[0];
+            TOExcel(theDT);
+        }
+    }
+    protected void btncancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("../frmFacilityHome.aspx");
+    }
+    #endregion
+
+    
+}

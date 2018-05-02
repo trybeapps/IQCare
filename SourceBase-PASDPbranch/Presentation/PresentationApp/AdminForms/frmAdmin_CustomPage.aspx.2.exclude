@@ -1,0 +1,41 @@
+<%@ Page Language="C#" MasterPageFile="~/AdminForms/AdminHeaderFooter.master" AutoEventWireup="true" CodeFile="frmAdmin_CustomPage.aspx.cs" Inherits="frmAdmin_CustomPage" Title="Untitled Page" %>
+<%@ MasterType VirtualPath="~/AdminForms/AdminHeaderFooter.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="adminheaderfooter" Runat="Server">
+<form id="addeditDisease" method="post" runat="server">
+<H3 class=margin align=left><asp:Label ID="lblHeader" runat="server" Text="OI or AIDS Defining Illness" ></asp:Label></H3>
+<DIV class="border center formbg"><BR>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+  <TD class="border center pad5 whitebg" width=40% nowrap = "nowrap" >
+      <asp:Label ID="lblName" runat="server" Text="OI or AIDS Defining Illness" Font-Bold = "true"  ></asp:Label>
+      <asp:textbox id="txtName" runat="server"></asp:textbox>
+  </TD>
+  
+  <TD id = "tdStatus" runat = "server" class="border center pad5 whitebg" width=30%>
+      <asp:Label ID="lblStatus" runat="server" Text="Status :" Font-Bold = "true"></asp:Label>
+      <asp:DropDownList id=ddStatus runat="server"> 
+          <asp:ListItem Value="0">Active</asp:ListItem>
+          <asp:ListItem Value="1">Inactive</asp:ListItem>
+      </asp:DropDownList>
+  </TD>
+    
+  <TD class="border center pad5 whitebg" width=30%>
+      <asp:Label ID="lblPriority" runat="server" Text="Priority :" Font-Bold = "true"></asp:Label>
+      <asp:textbox id="txtSeqNo" runat="server"></asp:textbox>
+  </TD>
+    </TR>
+</TBODY></TABLE>
+<table>
+<tbody>
+<TR>
+<TD class="pad5 center">
+    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+    <asp:Button ID="btnCancel" runat="server" Text="Reset" OnClick="btnCancel_Click" />
+    <asp:Button ID="btnExit" runat="server" Text="Back" OnClick="btnExit_Click" />
+</TD></TR></TBODY>
+</TABLE><br />
+</DIV> 
+</form>
+</asp:Content>
+

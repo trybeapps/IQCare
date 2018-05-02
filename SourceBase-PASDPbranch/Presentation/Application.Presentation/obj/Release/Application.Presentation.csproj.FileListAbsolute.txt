@@ -1,0 +1,6 @@
+C:\IQCare 3.6.0\References\Application.Presentation.dll
+C:\IQCare 3.6.0\References\Application.Presentation.pdb
+C:\IQCare 3.6.0\SourceBase\Presentation\Application.Presentation\obj\Release\Application.Presentation.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\Presentation\Application.Presentation\obj\Release\Application.Presentation.csproj.ResolveComReference.cache
+C:\IQCare 3.6.0\SourceBase\Presentation\Application.Presentation\obj\Release\Application.Presentation.dll
+C:\IQCare 3.6.0\SourceBase\Presentation\Application.Presentation\obj\Release\Application.Presentation.pdb

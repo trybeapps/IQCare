@@ -1,0 +1,24 @@
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.frmConnection.resources
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csproj.GenerateResource.Cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.exe.config
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.exe
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.exe
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.exe.config
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.exe
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.exe
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\bin\Debug\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csprojResolveAssemblyReference.cache
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.frmConnection.resources
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csproj.GenerateResource.Cache
+C:\Projects\IQCare 3.6.0\References\RemServer.exe.config
+C:\Projects\IQCare 3.6.0\References\RemServer.exe
+C:\Projects\IQCare 3.6.0\References\RemServer.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csprojResolveAssemblyReference.cache
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.frmConnection.resources
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.csproj.GenerateResource.Cache
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.exe
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Debug\RemServer.pdb

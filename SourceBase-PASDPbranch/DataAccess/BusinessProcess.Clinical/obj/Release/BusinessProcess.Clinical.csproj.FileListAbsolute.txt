@@ -1,0 +1,5 @@
+C:\IQCare 3.6.0\References\BusinessProcess.Clinical.dll
+C:\IQCare 3.6.0\References\BusinessProcess.Clinical.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Clinical\obj\Release\BusinessProcess.Clinical.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Clinical\obj\Release\BusinessProcess.Clinical.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Clinical\obj\Release\BusinessProcess.Clinical.pdb

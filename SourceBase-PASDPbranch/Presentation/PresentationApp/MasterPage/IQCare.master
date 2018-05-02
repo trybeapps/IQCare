@@ -1,0 +1,166 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="MasterPage_IQCare" CodeBehind="IQCare.master.cs" %>
+
+<%@ Register Src="levelOneNavigationUserControl.ascx" TagName="levelOneNavigationUserControl"
+    TagPrefix="uc1" %>
+<%@ Register Src="levelTwoNavigationUserControl.ascx" TagName="levelTwoNavigationUserControl"
+    TagPrefix="uc2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server" id="pageHead">
+    <title id="lblTitle" runat="server">International Quality Care Patient Management and
+        Monitoring System</title>
+    <link href="../Style/styles.css" id="main" rel="stylesheet" type="text/css" />
+    <link href="Menu.css" id="menuStyle" rel="stylesheet" type="text/css" />
+    <link href="../Style/calendar.css" rel="stylesheet" type="text/css" />
+    <link href="../Style/_assets/css/grid.css" rel="stylesheet" type="text/css" />
+    <link href="../Style/_assets/css/round.css" rel="stylesheet" type="text/css" />
+    <link href="../Style/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="Stylesheet" type="text/css" href="../Style/styles.css" />
+    <link rel="Stylesheet" href="../Touch/Styles/custom-theme/jquery-ui-1.10.3.custom.min.css"
+        type="text/css" />
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/menu.js") %>"></script>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/jsCommon.js") %>"></script>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/IQCareScript.js") %>"></script>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/weeklycalendar.js") %>"></script>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/highlightLabels.js") %>"></script>
+<%--    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/dateformat.js") %>"></script>--%>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/utils.js") %>"></script>
+    <script language="javascript" type="text/javascript" src="<%# ResolveUrl("~/Incl/jsDate.js") %>"></script>
+    <script language="javascript" type="text/javascript">
+        function pageurl(urlp) {
+
+            window.open(urlp);
+        }
+    </script>
+    <%--<script language="javascript" type="text/javascript">    buildWeeklyCalendar(0, 1);</script>--%>
+    <script language="javascript" type="text/javascript">
+
+        if (location.pathname.substring(0, 17) == "/Presentation/frm") {
+            buildWeeklyCalendar(0, 1);
+        }
+        else {
+            buildWeeklyCalendar(0, 0);
+        }
+    
+    
+
+    </script>
+    <style type="text/css">
+        td
+        {
+            word-break: break-all;
+        }
+        .tbl-right
+        {
+            width: 100%;
+            border: none;
+        }
+        .data-control
+        {
+            width: 50%;
+        }
+        .data-lable
+        {
+            width: 50%;
+        }
+        .tbl-left
+        {
+            width: 100%;
+            border: none;
+        }
+        .col-left
+        {
+            width: 350px;
+        }
+        .col-right
+        {
+            width: 350px;
+        }
+        
+        .h2
+        {
+            text-align: center;
+        }
+        
+     
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="containerMaster">
+        <div id="helpPasswordLinkButtons" style="float: right;">
+            <asp:LinkButton class="utility" ID="lnkHelp" runat="server" OnClientClick="window.open('../IQCareHelp/index.html'); return false"
+                Font-Bold="True">Help</asp:LinkButton>
+            <asp:Label ID="lblSeperator1" runat="server" Text="|"></asp:Label>
+&nbsp;<asp:LinkButton class="utility" ID="lnkPassword" runat="server" Font-Bold="True"
+                OnClick="lnkPassword_Click">Password</asp:LinkButton>
+            <asp:Label ID="lblSeperator2" runat="server" Text="|"></asp:Label>
+&nbsp;<asp:LinkButton class="utility" ID="lnkReportDefect" runat="server" Font-Bold="True"
+                OnClick="lnkReportDefect_Click">Report Defect</asp:LinkButton>
+                <asp:Label 
+                ID="lblSeperator3" runat="server" Text="|"></asp:Label>
+&nbsp;<asp:LinkButton class="utility" ID="lnkLogOut" runat="server" Font-Bold="True" OnClick="lnkLogOut_Click">Logout</asp:LinkButton>
+        </div>
+        <br />
+        <%--level 1 Navigation--%>
+        <div id="level1Navigation">
+            <uc1:levelOneNavigationUserControl ID="levelOneNavigationUserControl1" runat="server" />
+        </div>
+        <div id="mainMaster">
+            <%--facility level banner--%>
+            <div id="facilityBanner" runat="server">
+                <asp:Image ID="facilityLevelBanner" runat="server" ImageUrl="~/Images/facilityLevelBanner.png" /></div>
+            <%--patient home banner--%>
+            <div id="patientBanner" runat="server">
+                <asp:Image ID="patientHomeBanner" runat="server" ImageUrl="~/Images/patientLevelBanner.png" /></div>
+            <%--username--%>
+            <div id="username1" runat="server" class="usernameLevel1">
+                <asp:Label ID="lblUserName" runat="server" Text="Lanette Burrows"></asp:Label></div>
+            <%--current date--%>
+            <div id="currentdate1" align="right" runat="server" class="currentdateLevel1">
+                <asp:Label ID="lblDate" runat="server" Text="30 September 2006"></asp:Label></div>
+            <%--facility name--%>
+            <div id="facilityName" align="right" runat="server" class="facilityLevel1">
+                <asp:Label ID="lblLocation" runat="server" Text="Nsambya Hospital and Medical Center"></asp:Label></div>
+            <%--username and current date for patient level pages except patient home page--%>            <%--<div id="userNameLevel2" runat="server" class="userNameLevel2" >
+                <asp:Label ID="Label1" runat="server" Text="Lanette Burrows"></asp:Label></div>
+            <div id="currentDateLevel2" align="right" runat="server" class="currentDateLevel2" >
+                <asp:Label ID="Label2" runat="server" Text="30 September 2006" Height="21px"></asp:Label></div>--%>            <%--Image after current date for patient level pages except patient home page--%>
+            <div id="imageFlipLevel2" runat="server" class="imageFlipLevel2">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/menu_end_flip.png" Height="17px"
+                    Style="margin-left: 0px" ImageAlign="AbsBottom" BorderStyle="None" BorderWidth="0px" /></div>
+            <%--facility name for patient level pages except patient home page--%>            <%--<div id="facilityLevel2" align="right" runat="server" class="facilityLevel2" >
+                <asp:Label ID="Label5" runat="server" Text="Nsambya Hospital and Medical Center"></asp:Label></div>--%>            <%--level 2 Navigation--%>
+            <div id="level2Navigation" runat="server">
+                <uc2:levelTwoNavigationUserControl ID="levelTwoNavigationUserControl1" runat="server" />
+            </div>
+            <asp:Label ID="lblpntStatus" CssClass="textstylehidden" runat="server" Text="0"></asp:Label>
+            <div>
+                <asp:ContentPlaceHolder ID="IQCareContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <table width="100%">
+                <tr>
+                    <td align="left" width="50%">
+                        <a href="http://futuresgroup.com/ " onclick="window.open('http://futuresgroup.com/ '); return false">
+                            <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/FGI.jpg" CssClass="ImageLogo"
+                                Height="39px" Width="70px" /></a> &nbsp;&nbsp;<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"
+                                    onclick="window.open('http://creativecommons.org/licenses/by-nc-sa/3.0/'); return false">
+                                    <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/CreativeCommon.jpg" /></a>
+                    </td>
+                    <td align="right" width="50%">
+                        <asp:Label ID="Label1" runat="server" Font-Bold="True" Text="Version : "></asp:Label>
+                        <asp:Label ID="lblversion" runat="server" CssClass="blue11 nomargin" Font-Bold="True"></asp:Label>
+                        <br />
+                        <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Release Date : "></asp:Label>
+                        <asp:Label ID="lblrelDate" runat="server" CssClass="blue11 nomargin" Font-Bold="True"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
+    </div>
+    </form>
+</body>
+</html>

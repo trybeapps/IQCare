@@ -1,0 +1,570 @@
+<%@ Page Language="C#" MasterPageFile="~/ClinicalForms/ClinicalHeaderFooter.master" AutoEventWireup="true" CodeFile="frmLabOrder.aspx.cs" Inherits="Adultpharmacy" Title="Untitled Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="clinicalheaderfooter" Runat="Server">
+<script language="javascript" type="text/javascript" src="./incl/menu.js"></script>
+<script language="javascript" type="text/javascript" src="./incl/weeklycalendar.js"></script>
+<script language="javascript" type="text/javascript"  src="./incl/highlightLabels.js"></SCRIPT>
+<SCRIPT language=javascript>buildWeeklyCalendar(0);</SCRIPT>
+<SCRIPT language=javascript type=text/javascript>
+
+//Generic function to toggle elements
+function toggle(divId)
+{
+var Id = divId;
+if (document.layers)
+  {
+    if(document.layers[Id].visibility == "hide")
+    { show(Id);
+      return;
+    }
+    else if (document.layers[Id].visibility == "show")
+    { hide(Id);
+      return;
+    }
+  }
+if (document.all)
+  { if(document.all[Id].style.display == "none")
+      { show(Id);
+        return;
+      }
+    else if (document.all[Id].style.display == "inline")
+      { hide(Id);
+        return;
+      }
+  }
+else if (document.getElementById)
+  {
+    if(document.getElementById(Id).style.display == "none")
+      { show(Id);
+        return;
+      }
+    else if (document.getElementById(Id).style.display == "inline")
+      { hide(Id);
+       return;
+      }
+  }
+}
+
+//hides div
+function hide(divId) {
+if (document.layers) document.layers[divId].visibility = 'hide';
+else if (document.all) document.all[divId].style.display = 'none';
+else if (document.getElementById) document.getElementById(divId).style.display = 'none';
+}
+
+//shows div
+function show(divId) {
+if (document.layers) document.layers[divId].visibility = 'show';
+else if (document.all) document.all[divId].style.display = 'inline';
+else if (document.getElementById) document.getElementById(divId).style.display = 'inline';
+}
+
+function specify(id)
+
+{
+var selectId = id;
+var sdivId = 'other' + selectId;
+
+if (document.getElementById(selectId)[document.getElementById(selectId).selectedIndex].value != 'Adherance counselor signature')
+{
+hide (sdivId);
+}
+else 
+{
+show (sdivId);
+}
+}
+
+function dispense(id)
+{
+var selectId = id;
+var sdivId = 'pharmReportedbyShow';
+
+if (document.getElementById(selectId).value != '')
+{
+show(sdivId);
+}
+}
+</SCRIPT>
+<FORM id="frmLabOrder"  method=post runat="server">
+<H1 class=margin>Laboratory Order Form</H1>
+<DIV class="border center formbg"><!-- DAL: using tables for form layout. Note that there are classes on labels and td. For custom fields, just use the 2 column layout, if there is an uneven number of cells, set last cell colspan="2" and align="center". Probably should talk through this -->
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class="form" align=center valign=middle colspan=2>
+    <LABEL class=patientInfo>Patient Name:</LABEL><asp:Label ID="lblPatientName" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Satellite #:</LABEL><asp:Label ID="lblSatelliteId" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Patient Enrollment #:</LABEL><asp:Label ID="lblpatientenrol" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Existing Hosp/Clinic #:</LABEL><asp:Label ID="lblExisclinicID" runat="server" ></asp:Label>  </TD></TR>
+    
+    <!-- DAL add 20061031 -->
+      <TR>
+    <TD class="form" align=center valign=middle width="50%">
+    <LABEL>Preclinic Labs:</LABEL><asp:CheckBox ID="preclinicLabs" runat="server" /> 
+ </td>
+   <TD class="form" align=center valign=middle>
+   <LABEL for=LabtobeDone class=right35>Lab to be done on:</LABEL>
+    <asp:TextBox id=LabtobeDone maxLength=10  runat="server" ></asp:TextBox>
+    <IMG onclick="w_displayDatePicker('<%= LabtobeDone.ClientID %>');" height=22 alt="Date Helper" hspace=3 src="./images/cal_icon.gif" width=22 border=0>
+    <SPAN class=smallerlabel>(DD/MM/YYYY)</SPAN>
+    </TD></TR>
+  </TBODY></TABLE></DIV><BR>
+
+<DIV class="border center formbg"><BR>
+ <H2 class=forms align=left>ARV Related Labs</H2><br />
+<h3 class=forms align=left>Immunology</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+<!-- labels are rendering as spans. I have removed and just used the label tag. -->
+
+
+ <TR>
+    <TD class="form" width="50%">
+   <label class=right35>HIV Serology:</label>
+    <input type=radio ID="cblSerologyPos" name="rdocblSerology" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Pos</label>
+  <input type=radio ID="cblSerologyNeg" name="rdocblSerology" Value="2" onfocus="up(this)" onclick="down(this)" /><label>Neg</label>
+<asp:Checkbox id="HIVSerologyConfirm" Value="1" runat="server" /><label>Confirmatory</label>
+    </TD>
+    <TD class="form">
+    <Label class=right35>CD4:</Label><asp:TextBox ID="txtCD4" size=4 MaxLength=4 runat="server"></asp:TextBox> 
+<asp:Label ID="Label2" runat="server" Text="c/mm<sup>3</sup>" CssClass=smalllabel></asp:Label>
+ <asp:TextBox ID="txtCD4perc" runat="server" size=2 maxlength=3></asp:TextBox> 
+<asp:Label ID="Label3" runat="server" Text="%" Cssclass=smalllabel></asp:Label>
+    </TD>
+  </TR>
+
+ <TR>
+    <TD class="form" width="50%">
+    
+  <label class=right35>Viral Load:</label>
+
+<asp:TextBox ID="txtViralLoad" AutoPostBack=true MaxLength=6 size=6 runat="server"></asp:TextBox>
+<asp:Label ID="Label4" runat="server" Text="copies/ml" CssClass=smalllabel></asp:Label>
+    </TD>
+    <TD class="form">
+    <Label class=right35>Store Plasma:</Label><asp:CheckBox ID="storePlasma" value="Yes" runat=server /> <label class=smalllabel>Stored</label>
+    </TD>
+  </TR>
+</TBODY>
+</TABLE>
+
+
+<h3 class=forms align=left>Haematology</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+
+
+
+ <TR>
+    <TD class="form" width="50%">
+<label class=right35>HCT:</Label>
+<asp:TextBox ID="txtHCT" maxlength=3 size=3 runat="server"></asp:TextBox> <asp:Label ID="hctpercent" runat="server" Text="%" cssclass=smalllabel></asp:Label>
+<label class=margin20>Hb:</label> <asp:TextBox ID="txtHB" maxlength=3 size=3 runat="server"></asp:TextBox> <asp:Label ID="HBgdl" runat="server" Text="g/dl" CssClass=smalllabel></asp:Label>
+
+    </TD>
+    <TD class="form">
+  <label class=right35>WBC:</label><asp:TextBox ID="txtWBC" runat="server"></asp:TextBox>
+ <asp:Label ID="ccl" runat="server" Text="10<sup>9</sup> c/L" CssClass=smalllabel></asp:Label>
+
+    </TD>
+  </TR>
+
+ <TR>
+    <TD class="form" valign=top>
+   
+<label class=right15>Diff:<span class=margin10left>Neut: </span></Label><asp:TextBox ID="neut1" runat="server" size="2" MaxLength=2></asp:TextBox><label class=smalllabel>10<sup>3</sup> c/mcl</label><asp:TextBox ID="neut2" runat="server" MaxLength=3 size=2></asp:TextBox><label class=smalllabel>%</label><label class="margin10">Lymph:</label><asp:TextBox ID="lymph1" runat="server" size=2 MaxLength=2></asp:TextBox><label class=smalllabel>10<sup>3</sup> c/mcl</label><asp:TextBox ID="lymph2" runat="server" MaxLength=3 size=2></asp:TextBox><label class=smalllabel>%</label>
+<div style="padding-top:6px;"> </div>
+<label class="right15">Mono:</label><asp:TextBox ID="mono1" runat="server" size=2 MaxLength=2></asp:TextBox><label class=smalllabel>10<sup>3</sup> c/mcl</label><asp:TextBox ID="mono2" runat="server" MaxLength=3 size=2></asp:TextBox><label class=smalllabel>%</label><label style="margin-left:17px;margin-right:6px;">Eosin:</label><asp:TextBox ID="eosin1" runat="server" size=2 MaxLength=2></asp:TextBox><label class=smalllabel>10<sup>3</sup> c/mcl</label><asp:TextBox ID="eosin2" runat="server" MaxLength=3 size=2></asp:TextBox><label class=smalllabel>%</label>
+    </TD>
+ 
+   <TD class="form" valign=top>
+ <label class=right35>Platelets: </label>
+<asp:TextBox ID="txtPlatelets" runat="server"></asp:TextBox> 
+<asp:Label ID="Label9" runat="server" Text="10<sup>9</sup> c/L" CssClass=smalllabel></asp:Label>
+
+    </TD>
+    </tr>
+</TBODY>
+</TABLE>
+
+
+
+<h3 class=forms align=left>Chemistry</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+
+
+
+ <TR>
+   
+    <TD class="form">
+  <label class=right35>AST/SGOT: </label> 
+  <asp:TextBox ID="txtAST" runat="server"></asp:TextBox> 
+  <asp:Label ID="Label12" runat="server" Text="U/L" CssClass=smalllabel></asp:Label>
+
+    </TD>
+ 
+    <TD class="form" width="50%">
+    
+<label class=right35>ALT/SPGT: </label>
+<asp:TextBox ID="txtALT" runat="server"></asp:TextBox>
+ <asp:Label ID="Label11" runat="server" Text="U/L"  CssClass=smalllabel></asp:Label>
+
+  
+    </TD>
+    </tr>
+    <tr>
+    <TD class="form center" colspan=2>
+   <label>Creatinine:</label><asp:TextBox ID="txtCreatinine" runat="server"></asp:TextBox>
+   <asp:DropDownList ID="unitsCreatinine" runat="server" >
+   <asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+   <asp:listitem Value="mg/dl" Text="mg/dl"></asp:listitem>
+    <asp:listitem Value="mmole/dl" Text="mmole/dl"></asp:listitem>
+   </asp:DropDownList>
+   
+
+  <label class=margin50>Amylase:</label> 
+  <asp:TextBox ID="txtAmylase" runat="server"></asp:TextBox>
+<asp:Label ID="label23" runat="server" Text="U/L" cssclass=smalllabel></asp:Label>
+
+   
+<label class=margin50>Pregnancy:</label>    <input type=radio ID="rdoclPreg" name="clPreg" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Pos</label>
+  <input type=radio ID="rdoclPreg2" name="clPreg" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Neg</label>
+ 
+    </TD>
+  </TR>
+  
+  </table>
+  
+  
+
+<h3 class=forms align=left>Microbiology</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+
+
+
+ <TR>
+    <TD class="form" width="50%">
+  <label class=right35>Malarial Parasite:</label>
+   <input type=radio ID="rdochkMalaria" name="chkMalaria" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Present</label>
+  <input type=radio ID="rdochkMalaria2" name="chkMalaria" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Absent</label>
+  
+    </TD>
+    <TD class="form"><label class=right35>Serum Crypto. Ag:</label>
+       <input type=radio ID="rdorbSerum1" name="rbSerum" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Pos</label>
+  <input type=radio ID="rdorbSerum2" name="rbSerum" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Neg</label>
+ 
+    </TD>
+  </TR>
+  
+  
+  
+</TBODY>
+</TABLE>
+
+
+
+
+<h3 class=forms align=left>Sputum</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+
+
+
+ <TR>
+    <TD class="form" width="50%" valign=top>
+ 
+<label class=right25>AFB:</label>
+<asp:Label ID="Label16" runat="server" Text="#1" CssClass=smalllabel></asp:Label>
+<asp:TextBox ID="txtAFB1"  size=5 runat="server"></asp:TextBox>
+<asp:Label ID="Label17" runat="server" Text="#2"  CssClass=smalllabel></asp:Label>
+<asp:TextBox ID="txtAFB2" size=5 runat="server"></asp:TextBox>
+<asp:Label ID="Label18" runat="server" Text="#3"  CssClass=smalllabel></asp:Label>
+<asp:TextBox ID="txtAFB3" size=5 runat="server" ></asp:TextBox>
+
+    </TD>
+      <TD class="form" width="50%" valign=top>
+   <label>Gram Stain:</label>
+<div class=center>
+
+<textarea name=gramStain id=txtgramStain rows=4 cols=70></textarea></div>
+    </TD>
+  </TR>
+</TBODY>
+</table>
+
+
+
+<h3 class=forms align=left>Urine</h3>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+<TBODY>
+
+
+
+ <TR>
+    <TD class="form" width="50%" valign=top style="height: 98px">
+ 
+<label>Urinalysis:</label><br />
+
+<label class=right20>Spec Grav:</label><asp:TextBox ID="txtUrinalysis1" runat="server" size=1></asp:TextBox><label class=margin10left>Glucose:</label><asp:TextBox ID="txtUrinalysis2" runat="server" size=1></asp:TextBox><label class=margin10left>Ketone:</label><asp:TextBox ID="txtUrinalysis3" runat="server" size=1></asp:TextBox><label class=margin10left>Protein:</label><asp:TextBox ID="txtUrinalysis4" runat="server" size=1></asp:TextBox>
+<div style="padding-top:6px;"> </div>
+<label class=right20>Leuk Est:</label><asp:TextBox ID="txtUrinalysis5" runat="server" size=1></asp:TextBox><label style="margin-left:18px;margin-right:6px;">Nitrate:</label><asp:TextBox ID="txtUrinalysis6" runat="server" size=1></asp:TextBox>
+<label class=margin15>Blood:</label><asp:TextBox ID="txtUrinalysis7" runat="server" size=1></asp:TextBox>
+ </td>
+ <TD class="form" width="50%" valign=top style="height: 98px">
+   <label>Urinalysis:</label><br />
+<label class="smalllabel right30">Urine Microscopic Blood:</label>
+<asp:DropDownList ID=urineblood runat=server>
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="0-2" Text="0-2"></asp:ListItem>
+<asp:ListItem Value="3-5" Text="3-5"></asp:ListItem>
+<asp:ListItem Value="6-10" Text="6-10"></asp:ListItem>
+<asp:ListItem Value="11-25" Text="11-25"></asp:ListItem>
+<asp:ListItem Value="TNTC" Text="TNTC"></asp:ListItem>
+</asp:DropDownList>
+
+<label class="smalllabel margin10">Urine Microscopic WBC:</label>
+<asp:DropDownList ID=urineWBC runat=server>
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="0-2" Text="0-2"></asp:ListItem>
+<asp:ListItem Value="3-5" Text="3-5"></asp:ListItem>
+<asp:ListItem Value="6-10" Text="6-10"></asp:ListItem>
+<asp:ListItem Value="11-25" Text="11-25"></asp:ListItem>
+<asp:ListItem Value="TNTC" Text="TNTC"></asp:ListItem>
+</asp:DropDownList>
+<div style="padding-top:9px;"> </div>
+<label class="smalllabel right30">Urine Microscopic Bact:</label>
+<asp:DropDownList ID=urineBact runat=server>
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="0-2" Text="0-2"></asp:ListItem>
+<asp:ListItem Value="3-5" Text="3-5"></asp:ListItem>
+<asp:ListItem Value="6-10" Text="6-10"></asp:ListItem>
+<asp:ListItem Value="11-25" Text="11-25"></asp:ListItem>
+<asp:ListItem Value="TNTC" Text="TNTC"></asp:ListItem>
+</asp:DropDownList>
+
+<label class="smalllabel" style="margin-left:5px;margin-right:6px;">Urine Microscopic Casts:</label> 
+<asp:DropDownList ID=urineCasts runat=server>
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="hyaline" Text="hyaline"></asp:ListItem>
+<asp:ListItem Value="granular" Text="granular"></asp:ListItem>
+<asp:ListItem Value="RBC" Text="RBC"></asp:ListItem>
+<asp:ListItem Value="WBC" Text="WBC"></asp:ListItem>
+<asp:ListItem Value="waxy" Text="waxy"></asp:ListItem>
+</asp:DropDownList>
+
+
+
+    </TD>
+    </TR>
+    <tr>
+
+      <TD class="form" width="50%" valign=top>
+    <label>Culture/Senstivity:</label>
+  <div class=center>
+  <TEXTAREA name=cultureSensitivity rows="4" cols="70" id="txtcultureSensitivity" runat="server"></TEXTAREA> </div>
+</td>
+      <TD class="form" width="50%" valign=top>
+ <label class=right35>Stool O/P:</label>
+  <input type=radio ID="rdoStoolList" name="StoolList" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Pos</label>
+  <input type=radio ID="rdoStoolList2" name="StoolList" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Neg</label>
+    </TD>
+  </TR>
+  
+ 
+
+
+   
+</TBODY>
+</table>
+
+<h3 class=forms align=left>CSF</h3>
+
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+<TR>
+<TD class="form" width=50% > 
+
+<label class=right35>Cryptococcal Ag:</label> <input type=radio ID="rdocblSerumCrypto1" name="cblSerumCrypto" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Pos</label>
+  <input type=radio ID="rdocblSerumCrypto2" name="cblSerumCrypto" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Neg</label><br />
+<label class=right35>CSF India Ink:</label> <asp:TextBox ID="txtcsf" runat="server"></asp:TextBox><br />
+<label class=right35>CSF Gram Stain:</label> <asp:TextBox ID="txtCSFGramStain" runat="server"></asp:TextBox><br />
+<label class=right35>Culture:</label> <asp:TextBox ID="csfCulture" runat="server"></asp:TextBox>
+</td>
+
+<TD class="form" width=50% > 
+<label class=right35>Cell count: <span class="margin50"></span>RBC's: </label>
+<asp:TextBox ID="txtRBCs" runat="server"></asp:TextBox><br />
+<label class=right35>WBC's: </label><asp:TextBox ID="txtWBCs" runat="server"></asp:TextBox><br />
+<label class=right35>Neutrophils: </label><asp:TextBox ID="txtNeutrophils" runat="server"></asp:TextBox><br />
+<label class=right35>Lymphocytes: </label><asp:TextBox ID="txtLymphocytes" runat="server"></asp:TextBox>
+
+</td>
+
+</tr>
+
+<tr>
+
+<TD class="form center" colspan=2> 
+<label>Biochemistry:</label>
+
+<label class=margin20>Glucose:</label> <asp:TextBox ID="txtGlucose" runat="server"></asp:TextBox> <asp:dropdownlist ID="unitsGlucose" runat="server">
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="mg/dl" Text="mg/dl"></asp:ListItem>
+<asp:ListItem Value="mmole/dl" Text="mmole/dl"></asp:ListItem>
+</asp:dropdownlist>
+
+
+<label class=margin50>Protein:</label> <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> 
+<asp:dropdownlist ID="unitsProtein" runat="server">
+<asp:ListItem Value="" Text="--Select--"></asp:ListItem>
+<asp:ListItem Value="mg/dl" Text="mg/dl"></asp:ListItem>
+<asp:ListItem Value="mmole/dl" Text="mmole/dl"></asp:ListItem>
+</asp:dropdownlist>
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3 class=forms align=left>Chest X-Ray</h3>
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+<TR>
+<TD class="form">
+
+<label>Chest X-Ray: </label>
+ <input type=radio ID="rdochestxray1" name="listchestxray" Value="1" onfocus="up(this)" onclick="down(this)" /><label>Normal</label>
+  <input type=radio ID="rd0chestxray2" name="listchestxray" Value="2" class="margin20left" onfocus="up(this)" onclick="down(this)" /><label>Abnormal</label>
+<div class=center>
+<textarea id="xraytxt" name="xraytxt" cols=140 rows=5></textarea>
+</div>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+<br />
+<!-- note: using rendered HTML. The display HTML has been cleaned up as shown below. Will need to be jibed -->
+
+<a id="otherLabs" class="button" onclick="show('tempOtherLabs');hide('otherLabs')">Other Labs</a>
+
+<!-- Button ID="OtherLab" CssClass="marginbuttonPharmacy" Text="Other Labs" OnClick="OtherLabs_Click" />-->
+<br />
+<br />
+</div><br />
+
+<!-- other labs here. Using static HTML for demo. -->
+
+<div id="tempOtherLabs" style="display:none;">
+ <H2 class=forms align=left>Other Labs</H2><br />
+<DIV class="border center formbg">
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+   <tr>
+  <TD class="form center">
+
+  <div class="checkboxexport">
+		<table id="ctl00_clinicalheaderfooter_chkLabList" border="0" >
+			<tr>
+				<td> <label for="ctl00_clinicalheaderfooter_chkLabList_0"><input id="ctl00_clinicalheaderfooter_chkLabList_0" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$0" />Hepatitis B surface – antibody (HBsAb)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_1" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$1" /><label for="ctl00_clinicalheaderfooter_chkLabList_1">Hepatitis B surface – antigen (HBsAg)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_2" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$2" /><label for="ctl00_clinicalheaderfooter_chkLabList_2">LDL (Mg/dl)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_3" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$3" /><label for="ctl00_clinicalheaderfooter_chkLabList_3">Pap Smear (Cervical CA – female only)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_4" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$4" /><label for="ctl00_clinicalheaderfooter_chkLabList_4">Gonorrhea</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_5" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$5" /><label for="ctl00_clinicalheaderfooter_chkLabList_5">Chlamydia</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_6" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$6" /><label for="ctl00_clinicalheaderfooter_chkLabList_6">Rectal Pap Smear</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_7" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$7" /><label for="ctl00_clinicalheaderfooter_chkLabList_7">Syphilis (FTA)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_8" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$8" /><label for="ctl00_clinicalheaderfooter_chkLabList_8">Syphilis (RPR)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_9" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$9" /><label for="ctl00_clinicalheaderfooter_chkLabList_9">Total Cholesterol (mg/dl)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_10" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$10" /><label for="ctl00_clinicalheaderfooter_chkLabList_10">Toxoplasma IgG antibody</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_11" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$11" /><label for="ctl00_clinicalheaderfooter_chkLabList_11">Triglycerides (mg/dl)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_12" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$12" /><label for="ctl00_clinicalheaderfooter_chkLabList_12">Vaginal Inspection with Acetic Acid (VIA)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_13" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$13" /><label for="ctl00_clinicalheaderfooter_chkLabList_13">Varicella (Chicken Pox)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_14" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$14" /><label for="ctl00_clinicalheaderfooter_chkLabList_14">Hepatitis C antibody</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_15" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$15" /><label for="ctl00_clinicalheaderfooter_chkLabList_15">Albumin (mg/dl)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_16" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$16" /><label for="ctl00_clinicalheaderfooter_chkLabList_16">Cytomegalovirus (CMV)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_17" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$17" /><label for="ctl00_clinicalheaderfooter_chkLabList_17">Epstein Barr Virus (EBV)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_18" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$18" /><label for="ctl00_clinicalheaderfooter_chkLabList_18">HDL (mg/dl)</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_19" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$19" /><label for="ctl00_clinicalheaderfooter_chkLabList_19">Hepatitis A Ab-IgM</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_20" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$20" /><label for="ctl00_clinicalheaderfooter_chkLabList_20">Hepatitis A Ab-Total</label></td>
+			</tr><tr>
+				<td><input id="ctl00_clinicalheaderfooter_chkLabList_21" type="checkbox" name="ctl00$clinicalheaderfooter$chkLabList$21" /><label for="ctl00_clinicalheaderfooter_chkLabList_21">Hepatitis B core – antibody IgM (HBsAb)</label></td>
+			</tr>
+		</table>
+		</div><br /><br />
+<input type="submit" name="ctl00$clinicalheaderfooter$theBtn" value="Go" id="ctl00_clinicalheaderfooter_theBtn" class="marginbuttonPharmacyList" style="width:80px;" />
+<br /><br />
+</td>
+</tr>
+</TBODY>
+</TABLE>
+
+</DIV></div><br />
+
+<!-- end other labs -->
+
+<DIV class="border center formbg"><BR>
+<h2 class=forms align=left> Approval and Signatures</h2>
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+  <TR>
+    <TD class="form" width=50%>
+    <LABEL class=right35>Ordered by:</LABEL> 
+    <asp:DropDownList ID=ddlPharmOrderedbyName runat="Server">
+    </asp:DropDownList>
+    </TD>
+    <TD class="form"><LABEL class=right35 for=pharmOrderedbyDate>Ordered By Date:</LABEL> 
+    <asp:TextBox id= "txtpharmOrderedbyDate" maxLength= "10" runat="server"> </asp:TextBox>
+      <IMG id=appDateimg1 onclick="w_displayDatePicker('<%=txtpharmOrderedbyDate.ClientID%>');" height=22 
+      alt="Date Helper" hspace=5 src="./images/cal_icon.gif" width=22 border=0 name=appDateimg>
+      <SPAN class=smallerlabel id=appDatespan1>(DD/MM/YYYY)</SPAN>
+     </TD>
+     </TR>
+     <TR>
+    <TD class="form">
+    <LABEL class=right35>Reported by:</LABEL> 
+    <asp:DropDownList ID=ddlLabReportedbyName runat="Server">
+    <asp:ListItem value="" Text="--Select--"></asp:ListItem>
+    </asp:DropDownList>
+    </TD>
+    <TD class="form"><LABEL class=right35 for=labReportedbyDate>Reported By Date:</LABEL> 
+    <asp:TextBox id= "txtlabReportedbyDate" maxLength= "10" runat="server"> </asp:TextBox>
+      <IMG id=IMG1 onclick="w_displayDatePicker('<%=txtlabReportedbyDate.ClientID%>');" height=22 
+      alt="Date Helper" hspace=5 src="./images/cal_icon.gif" width=22 border=0 name=appDateimg>
+      <SPAN class=smallerlabel id=SPAN1>(DD/MM/YYYY)</SPAN>
+     </TD>
+     </TR>
+ 
+  <TR>
+   <TD class="pad5 center" colSpan="2">
+        <asp:Button ID="btnsave" runat="server" Text = "Save"  />
+        <asp:Button ID="btncmplete" runat="server" Text = "Complete"  />
+  </TD> 
+ </TR></TBODY></TABLE></DIV><BR>
+</FORM>
+  
+</asp:Content>
+

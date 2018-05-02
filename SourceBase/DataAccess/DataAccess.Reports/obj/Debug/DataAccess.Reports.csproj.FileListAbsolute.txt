@@ -1,0 +1,4 @@
+C:\Projects\IQCare 3.6.0\References\DataAccess.Reports.dll
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Reports\obj\Debug\DataAccess.Reports.dll
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Reports\obj\Debug\DataAccess.Reports.pdb
+C:\Projects\IQCare 3.6.0\References\DataAccess.Reports.pdb

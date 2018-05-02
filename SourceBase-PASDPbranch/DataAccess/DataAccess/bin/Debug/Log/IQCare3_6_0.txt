@@ -1,0 +1,24 @@
+2014-06-10 [11] ERROR Application.Common.CLogger - Namespace: DataAccess.Entity, Class: ClsObject, Method: ReturnObject - Call started.
+2014-06-10 [11] ERROR Application.Common.CLogger - CommandText: pr_Admin_SelectFacility_Constella
+2014-06-10 [11] ERROR Application.Common.CLogger - Parameters: 
+Name: @SystemId, Type: Int, Value: 1, Direction: Input
+
+2014-06-10 [11] ERROR Application.Common.CLogger - Exception Message: System.Data.SqlClient.SqlException (0x80131904): Procedure pr_Admin_SelectFacility_Constella has no parameters and arguments were supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at DataAccess.Entity.ClsObject.ReturnObject(Hashtable Params, String CommandText, ObjectEnum Obj) in C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\ClsObject.cs:line 105
+ClientConnectionId:ede3cc0d-251f-481f-8b85-86fe689724a9
+2014-06-10 [11] ERROR Application.Common.CLogger - ---------------------------------------------------------------------------------------

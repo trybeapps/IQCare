@@ -1,0 +1,3 @@
+2014-06-19 12:56:34,404 [10] INFO Application.Common.CLogger - Business Server Activated.
+2014-06-19 12:56:34,463 [10] INFO Application.Common.CLogger - Log4Net file cleanup process started.
+2014-06-19 12:56:34,473 [10] INFO Application.Common.CLogger - Log4Net File cleanup process end.

@@ -1,0 +1,124 @@
+﻿<%@Master Language="C#"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://61.17.143.213/PMMSVER1.0/facility_home.html -->
+<?xml version="1.0"?>
+<HTML lang=en-US xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>International Quality Care Patient Management and Monitoring System</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href ="./styles/styles.css" />
+<script language="javascript" type="text/javascript" src="./incl/menu.js"></script>
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=container>
+<DIV class=utility align=right><A class=utility 
+href="http://61.17.143.213/PMMSVER1.0/">Help</A> | <A class=utility 
+href="http://61.17.143.213/PMMSVER1.0/help.html">Password</A> | <A 
+class=utility href="http://61.17.143.213/PMMSVER1.0/help.html">Logout</A> 
+</DIV><!-- level one nav  -->
+<DIV id=levelone>
+<TABLE cellSpacing=0 cellPadding=0 width=950 border=0>
+  <TBODY>
+  <TR>
+    <TD class=navbutton width=121 height=26 rowSpan=2><A class=innerbutton 
+      href="http://61.17.143.213/PMMSVER1.0/patient_search.html">Find/Add 
+      Patient</A><BR></TD>
+    <TD class=navbutton onmouseover=expand(this); onmouseout=collapse(this); 
+    width=70 height=26 rowSpan=2><A class=innerbutton 
+      href="http://61.17.143.213/PMMSVER1.0/page.asp">Reports</A><BR><!--begin dropdown -->
+      <DIV class=navbutton>
+      <TABLE class=menu cellSpacing=0 cellPadding=0 width=162 border=0>
+        <TBODY>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Patient 
+            Reports</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Clinical 
+            Reports</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Donor Reports</A> 
+          </TD></TR></TBODY></TABLE></DIV><!--end  dropdown --></TD>
+    <TD class=navbutton width=82 height=26 rowSpan=2><A class=innerbutton 
+      href="http://61.17.143.213/PMMSVER1.0/page.asp">Scheduler</A><BR></TD>
+    <TD class=navbutton onmouseover=expand(this); onmouseout=collapse(this); 
+    width=88 height=26 rowSpan=2><A class=innerbutton 
+      href="http://61.17.143.213/PMMSVER1.0/page.asp">Administration</A><BR><!-- begin dropdown -->
+      <DIV class=navbutton >
+      <TABLE class=menu cellSpacing=0 cellPadding=0 width=189 border=0>
+        <TBODY>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Facility Set 
+            Up</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Customize Drop 
+            Down Lists</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">User 
+            Administration</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">User Group 
+            Administration</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Delete Patient</A> 
+          </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Configure Custom 
+            Fields</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Export</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Import</A> </TD></TR>
+        <TR>
+          <TD><A class=menuitem 
+            href="http://61.17.143.213/PMMSVER1.0/page.asp">Scheduler 
+            Configuration</A> </TD></TR></TBODY></TABLE></DIV><!-- end dropdown --></TD>
+    <TD class=navbutton width=77 height=26 rowSpan=2><A class=innerbutton 
+      href="http://61.17.143.213/PMMSVER1.0/page.asp">Back Up</A><BR></TD>
+    <TD class=navbutton onmouseover="imgswap('tab','images/tab_right_over');" 
+    onmouseout="imgswap('tab','images/tab_right');" width=98 height=26 
+      rowSpan=2><A class=innerbutton2 
+      href="http://61.17.143.213/PMMSVER1.0/facility_home.html">Facility 
+      Home</A><BR></TD>
+    <TD vAlign=top width=23 height=26 rowSpan=2><IMG id=tab height=27 alt=tab 
+      src="./IMAGES/tab_right.gif" width=23 border=0 name=tab></TD>
+    <TD class=breadcrumb vAlign=bottom height=21><A class=breadcrumb 
+      href="http://61.17.143.213/PMMSVER1.0/">Previous Page</A> » <A 
+      class=breadcrumb href="http://61.17.143.213/PMMSVER1.0/">Previous 
+      Page</A> » Current Page</TD></TR>
+  <TR>
+    <TD class=topline height=5></TD></TR></TBODY></TABLE></DIV>
+<DIV id=main>
+<DIV id=bluetop></DIV><IMG id=logo height=94 
+alt="International Quality Care by AIDSRelief" 
+src="./IMAGES/iq_logo.gif" width=236 border=0> <IMG id=pmms height=53 
+alt="Patient Management and Monitoring System" src="./IMAGES/pmms.gif" 
+width=264 border=0> <IMG id=collage height=117 alt="AIDS Relief Uganda" 
+src="./IMAGES/collage.jpg" width=424 border=0> 
+<DIV id=username>Lanette Burrowsy</DIV>
+<DIV id=date align=right>30 September 2006</DIV>
+<DIV id=border></DIV><IMG id=tabfacility height=23 alt="Facility Name" 
+src="./IMAGES/tab_facility.gif" width=377 border=0> 
+<DIV id=facility>Nsambya Hospital and Medical Center</DIV>
+<DIV id=contentholding>
+<DIV class=contentpad>
+<!-- begin content area -->
+<asp:contentplaceholder id="facilityheaderfooter" runat="server">
+</asp:contentplaceholder>
+</DIV><!-- end content area -->
+<DIV class=footer>International Quality Care Patient Management and Monitoring 
+System Version 1.x. Copyright © 2006 AIDSRelief. All rights 
+reserved.</DIV><BR></DIV>
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIV><BR><BR></DIV><BR><BR></BODY></HTML>
+

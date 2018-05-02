@@ -1,0 +1,32 @@
+<%@ Page Language="C#" MasterPageFile="~/AdminForms/AdminHeaderFooter.master" AutoEventWireup="true" CodeFile="frmAdmin_Satellites.aspx.cs" Inherits="AdminForms_frmAdmin_Satellites"  %>
+<%@ MasterType VirtualPath="~/AdminForms/AdminHeaderFooter.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="AdminHeaderFooter" Runat="Server">
+<form id ="Satellite" method="post" runat="server" title="Satellite">
+<h1 class="margin">Satellite</h1>
+<div class ="border center">
+<table width="100%" border="0" cellpadding="0" cellspacing="6">
+<tbody>
+<tr>
+<td class="pad5 formbg border">
+    <div class = "GridView  whitebg">
+    <asp:GridView ID="GrdSatellite" runat="server" autogeneratecolumns="False"  AllowSorting = "true"  
+    Width="100%" PageIndex = "1" HorizontalAlign="Left" CellSpacing="1" BackColor="White" OnRowDataBound="GrdSatellite_RowDataBound" OnSelectedIndexChanging="GrdSatellite_SelectedIndexChanging">
+    <HeaderStyle CssClass="tableheaderstyle" HorizontalAlign="Left" />
+    </asp:GridView>
+    </div>
+</td>
+</tr>
+<tr>
+<td class="pad5 center">
+    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"  />
+    <asp:Button ID="btnClose" runat="server" Text="Close" OnClick="btnClose_Click" />
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</form>
+</asp:Content>
+
+
+

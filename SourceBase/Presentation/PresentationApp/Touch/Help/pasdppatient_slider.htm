@@ -1,0 +1,251 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+   <title>Patient Slider</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+   <meta name="description" content="Patient Slider">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style type="text/css" media="screen"> 
+html, body { margin:0; 
+   padding:0; 
+   overflow: hidden; 
+   background: #FFFFFF; 
+  }
+ 
+div#printheader { 
+   display: none;
+   padding-bottom: 10px;
+   }
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }
+   </style>
+<!--[if lt IE 7]>
+<style type="text/css">
+  #idcontent {padding: 0px;} 
+  #innerdiv {padding: 10px 5px 5px 10px ;} 
+</style> 
+<![endif]-->
+<noscript>
+<style type="text/css">
+html, body { overflow: auto; }
+</style> 
+</noscript>
+<style type="text/css" media="print">
+span.f_Heading1 { color: black; }
+#idheader, #printheader img { display:none; }
+#printheader { display: block; margin-top: 20px; }
+#idcontent { margin-top: 10px; }
+</style>   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "pasdppatient_slider.htm");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+<!--ZOOMSTOP-->
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">Patient Slider</span></h1>
+</div> 
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   &raquo;No topics above this level&laquo;
+   </p>
+   <h1 class="p_Heading1"><span class="f_Heading1">Patient Slider</span></h1>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="pasdpadd_a_patient.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="pasdppadmt_overview.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="pasdpclinical_forms.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p>The patient slider displays all of the patient's key demographic, pharmacy and lab information as well as patients alerts.</p>
+<p>&nbsp;</p>
+<p>1. To access the Patient slider, click on the Patient name tag</p>
+<p>&nbsp;</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 10px;"><table style="border:none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:261px; padding:2px;"><p><img src="patientslider_zoom50.png" width="476" height="333" alt="PatientSlider" style="border:none" /></p>
+</td>
+<td style="vertical-align:top; width:707px; padding:2px;"><p style="text-align: justify; margin: 8px 0px 8px 0px;"><span style="font-size: 12pt; font-style: italic; font-weight: bold;"> &nbsp;Patient Slider Display</span></p>
+<p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Patient demographic information</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Latest labs display – with up and down errors</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Latest regimen</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">ART Therapy “report”</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Growth curve display with data overlay</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">CD4 and Viral load graph</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Weight and BMI graph</span></p><p style="text-align: left; padding: 0px 0px 0px 24px; margin: 0px 0px 0px 24px;"><span style="font-size:12pt; font-family: 'Arial Unicode MS','Lucida Sans Unicode','Arial';color:#000000;display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 12pt; font-family: Calibri;">Visual alerts displayed in one box such as: </span></p><p style="text-align: left; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 72px;"><span style="font-size:12pt; font-family: 'Courier New';color:#000000;display:inline-block;width:24px;margin-left:-24px">o</span><span style="font-size: 12pt; font-family: Calibri;">next viral load lab date</span></p><p style="text-align: left; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 72px;"><span style="font-size:12pt; font-family: 'Courier New';color:#000000;display:inline-block;width:24px;margin-left:-24px">o</span><span style="font-size: 12pt; font-family: Calibri;">Out of drugs</span></p><p style="text-align: left; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 72px;"><span style="font-size:12pt; font-family: 'Courier New';color:#000000;display:inline-block;width:24px;margin-left:-24px">o</span><span style="font-size: 12pt; font-family: Calibri;">Labs ordered (but not yet entered)</span></p><p style="text-align: left; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 72px;"><span style="font-size:12pt; font-family: 'Courier New';color:#000000;display:inline-block;width:24px;margin-left:-24px">o</span><span style="font-size: 12pt; font-family: Calibri;">Pharmacy ordered (but displease acknowledgment not yet entered)</span></p><p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2. Patient Information</p>
+<p>&nbsp;</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 10px;"><table style="border:none; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="4" style="vertical-align:top; width:263px; padding:2px; border:solid 1px #000000;"><p><img src="latestregimen.png" width="242" height="221" alt="LatestRegimen" style="border:none" /></p>
+</td>
+<td style="vertical-align:top; width:153px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">RX|Last Regimen</span></p>
+</td>
+<td style="vertical-align:top; width:607px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 12pt; font-family: Calibri;">The regimen dispensed in the last/latest pharmacy form</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:153px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Most Recent CD4</span></p>
+</td>
+<td style="vertical-align:top; width:607px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 12pt; font-family: Calibri;">The CD4 from the last/latest CD4 taken</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:153px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Next CD4 Due</span></p>
+</td>
+<td style="vertical-align:top; width:607px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 12pt; font-family: Calibri;">6 months from the last CD4</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:153px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Most Recent Viral Load</span></p>
+</td>
+<td style="vertical-align:top; width:607px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 0px;"><span style="font-size: 12pt; font-family: Calibri;">Viral load of the last/latest lab test</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>3. Lab Alerts</p>
+<p>&nbsp;</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 10px;"><table style="border:none; border-spacing:0px; border-collapse:collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:502px; height:358px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 13px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Lab Alerts</span></p>
+<p style="line-height: 1.15; margin: 0px 11px 13px 11px;"><img src="hmfile_hash_d2b3e73e.png" width="494" height="323" alt="Labs Alert" style="border:none" /></p>
+</td>
+<td style="vertical-align:top; width:460px; height:358px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 14px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">CD4-Viral Load Chart</span></p>
+<p style="line-height: 1.15; margin: 0px 16px 13px 11px;"><img src="hmfile_hash_0daf228a.png" width="479" height="313" alt="CD4-Viral Load Chart" style="border:none" /></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:502px; height:355px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 12px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Weight-BMI Chart</span></p>
+<p style="line-height: 1.15; margin: 0px 0px 13px 12px;"><img src="hmfile_hash_5726a235.png" width="487" height="316" alt="Weight-BMI Chart" style="border:none" /></p>
+<p>&nbsp;</p>
+</td>
+<td style="vertical-align:top; width:460px; height:355px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 10px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">Latest Labs</span></p>
+<p style="line-height: 1.15; margin: 0px 15px 13px 12px;"><img src="hmfile_hash_d50d90e0.png" width="477" height="312" alt="Lastest Labs" style="border:none" /></p>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td style="vertical-align:top; width:502px; height:365px; padding:2px; border:solid 1px #000000;"><p style="line-height: 1.15; margin: 0px 0px 13px 13px;"><span style="font-size: 11pt; font-family: Calibri; font-weight: bold;">ARV History</span></p>
+<p style="line-height: 1.15; margin: 0px 18px 13px 12px;"><img src="hmfile_hash_9997a70b.png" width="493" height="327" alt="ARV History" style="border:none" /></p>
+<p>&nbsp;</p>
+</td>
+<td style="vertical-align:top; width:460px; height:365px; padding:2px; border:solid 1px #000000;"><p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</div>
+<p>&nbsp;</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+var lastSlashPos = document.URL.lastIndexOf("/") > document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") : document.URL.lastIndexOf("\\");
+if( document.URL.substring(lastSlashPos + 1, lastSlashPos + 4).toLowerCase() != "~hh" )
+{
+ if (document.all) setTimeout(function() {nsrInit();},20); 
+    else nsrInit();
+ } 
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

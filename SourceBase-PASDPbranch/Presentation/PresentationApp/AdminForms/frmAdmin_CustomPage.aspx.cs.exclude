@@ -1,0 +1,231 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using Application.Common;
+using Application.Presentation;
+using Interface.Administration;
+
+public partial class frmAdmin_CustomPage : System.Web.UI.Page
+{
+    /////////////////////////////////////////////////////////////////////
+    // Code Written By   : Sanjay Rana
+    // Written Date      : 23th Aug 2006
+    // Modification Date : 05th Sept 2006
+    // Description       : Custom Master Page
+    //
+    /// /////////////////////////////////////////////////////////////////
+    
+
+    #region "UserFunctions"
+    private void Clear_Fields()
+    {
+        if (Session["TableName"].ToString() != "HivDisease")
+        {
+            lblName.Text = Session["ListName"].ToString() + " :";
+            ////////// Done by Sanjay on 19th Sept 2006  /////////////////////////////////////////
+            ////////// For all the Custom List the ListName field of XML file will be Used //////
+            ////if (Convert.ToInt32(Session["CategoryId"]) > 0)
+            ////  lblName.Text = Session["ListName"].ToString() + " :";
+            //////////////////////////////////////////////////////////////////////////////////////
+        }
+        else
+        {
+            lblName.Text = "OIs or AIDS Defining Illnesses :";
+        }
+        txtName.Text = "";
+        txtSeqNo.Text = "";
+        ddStatus.SelectedValue = "0";
+        if (Convert.ToInt32(Session["Id"]) != 0)
+            GetData();
+        txtName.Focus(); 
+    }
+
+    private void GetData()
+    {
+        ICustomList CustomManager = (ICustomList)ObjectFactory.CreateInstance("BusinessProcess.Administration.BCustomList, BusinessProcess.Administration");
+        DataTable theDT = CustomManager.GetCustomMasterDetails(Session["TableName"].ToString(), Convert.ToInt32(Session["Id"]));
+        txtName.Text = theDT.Rows[0]["Name"].ToString();
+        txtSeqNo.Text = theDT.Rows[0]["SRNO"].ToString();
+        ddStatus.SelectedValue = theDT.Rows[0]["DeleteFlag"].ToString();
+    }
+
+    private Boolean FieldValidation()
+    {
+        if (txtName.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = lblName.Text;
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtName.Focus();
+            return false;
+        }
+        if (txtSeqNo.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "Priority";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtSeqNo.Focus();
+            return false;
+        }
+        return true;
+    }
+    #endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Page.IsPostBack != true)
+        {
+            try
+            {
+                Session["Id"] = Convert.ToInt32(Request.QueryString["SelectedId"]);
+                Session["TableName"] = Request.QueryString["TableName"].ToString();
+                Session["CategoryId"] = Request.QueryString["CategoryId"].ToString();
+                Session["ListName"] = Request.QueryString["LstName"].ToString();
+                Session["FID"] = Request.QueryString["Fid"].ToString();
+                (Master.FindControl("lblheader") as Label).Text = Session["ListName"].ToString();
+                
+                Clear_Fields();
+                AuthenticationManager Authentication = new AuthenticationManager();
+                if (Convert.ToInt32(Session["Id"]) == 0)
+                {
+                    if(Authentication.HasFunctionRight(Convert.ToInt32(Session["FID"]),FunctionAccess.Add,(DataTable)Session["UserRight"]) == false )
+                    {
+                        btnSave.Enabled = false;
+                    }
+
+                    MsgBuilder theBuilder = new MsgBuilder();
+                    theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                        theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    IQCareMsgBox.ShowConfirm("CustomSaveRecord", theBuilder, btnSave );
+                    if (Session["TableName"].ToString() != "HivDisease")
+                    {
+                        lblHeader.Text = "Add " + Session["ListName"].ToString();
+                        if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                            lblHeader.Text = "Add " + Session["ListName"].ToString();
+                    }
+                    else
+                    {
+                        lblHeader.Text = "Add OIs or AIDS Defining Illnesses";
+                    }
+                    tdStatus.Visible = false; 
+                }
+                else
+                {
+                    if(Authentication.HasFunctionRight(Convert.ToInt32(Session["FID"]),FunctionAccess.Update,(DataTable)Session["UserRight"])== false)
+                    {
+                        btnSave.Enabled = false;
+                    }
+
+                    MsgBuilder theBuilder = new MsgBuilder();
+                    theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                        theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    IQCareMsgBox.ShowConfirm("CustomUpdateRecord", theBuilder, btnSave);
+                    if (Session["TableName"].ToString() != "HivDisease")
+                    {
+                        lblHeader.Text = "Edit " + Session["ListName"].ToString();
+                        if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                            lblHeader.Text = "Edit " + Session["ListName"].ToString();
+                    }
+                    else
+                    {
+                        lblHeader.Text = "Edit OIs or AIDS Defining Illnesses";
+                    }
+                    tdStatus.Visible = false;
+                    btnSave.Text = "Update";
+                    tdStatus.Visible = true;
+                }
+            }
+            catch(Exception err)
+            {
+                MsgBuilder theBuilder = new MsgBuilder();
+                theBuilder.DataElements["MessageText"] = err.Message.ToString();
+                IQCareMsgBox.Show("#C1", theBuilder, this);
+            }
+        }
+    }
+    
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        if (FieldValidation() == false)
+        {
+            return;
+        }
+
+        ICustomList CustomManager;
+        try
+        {
+            CustomManager = (ICustomList)ObjectFactory.CreateInstance("BusinessProcess.Administration.BCustomList,BusinessProcess.Administration");
+            if (btnSave.Text == "Save")
+            {
+
+                int RowsAffected = CustomManager.SaveCustomMasterRecord(Session["TableName"].ToString(),txtName.Text.Trim(),Convert.ToInt32(txtSeqNo.Text),Convert.ToInt32(Session["CategoryId"]),Convert.ToInt32(Session["AppUserId"]));
+                if (RowsAffected <= 0)
+                {
+                    MsgBuilder theBuilder = new MsgBuilder();
+                    theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                  
+                    if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                        theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    IQCareMsgBox.Show("CustomMasterExists",theBuilder, this);
+                    return;
+                }
+                else
+                {
+                    MsgBuilder theBuilder = new MsgBuilder();
+                    theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                   
+                    if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                        theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                    IQCareMsgBox.Show("CustomMasterSave",theBuilder, this);
+                    Clear_Fields();
+                }
+            }
+            else
+            {
+               
+                CustomManager.UpdateCustomMasterRecord(Session["TableName"].ToString(),Convert.ToInt32(Session["Id"]),txtName.Text.Trim(),Convert.ToInt32(txtSeqNo.Text),Convert.ToInt32(Session["CategoryId"]),Convert.ToInt32(ddStatus.SelectedValue),Convert.ToInt32(Session["AppUserId"]));  
+                MsgBuilder theBuilder = new MsgBuilder();
+                theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                if (Convert.ToInt32(Session["CategoryId"]) > 0)
+                    theBuilder.DataElements["Name"] = Session["ListName"].ToString();
+                IQCareMsgBox.Show("CustomMasterUpdate",theBuilder, this);
+                Session["Id"] = 0; 
+                Clear_Fields();
+            }
+        }
+        catch (Exception err)
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["MessageText"] = err.Message.ToString();
+            IQCareMsgBox.Show("#C1", theBuilder, this);
+            return;
+        }
+        finally
+        {
+            CustomManager = null;
+        }
+
+    }
+
+    protected void btnExit_Click(object sender, EventArgs e)
+    {
+        string Url = string.Format("{0}?TableName={1}&CategoryId={2}&LstName={3}&Fid={4}","frmAdmin_CustomList.aspx", Session["TableName"].ToString(), Session["CategoryId"].ToString(),Session["ListName"].ToString(),Session["FID"].ToString());
+        Response.Redirect(Url);
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Clear_Fields();
+    }
+
+}

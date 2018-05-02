@@ -1,0 +1,10 @@
+C:\IQCare 3.6.0\References\BusinessProcess.SCM.dll
+C:\IQCare 3.6.0\References\BusinessProcess.SCM.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.pdb
+C:\Projects\IQCare 3.6.0\References\BusinessProcess.SCM.dll
+C:\Projects\IQCare 3.6.0\References\BusinessProcess.SCM.pdb
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.csprojResolveAssemblyReference.cache
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.dll
+C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.SCM\obj\Debug\BusinessProcess.SCM.pdb

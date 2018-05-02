@@ -1,0 +1,4 @@
+C:\IQCare 3.6.0\References\DataAccess.Common.dll
+C:\IQCare 3.6.0\References\DataAccess.Common.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Common\obj\Release\DataAccess.Common.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Common\obj\Release\DataAccess.Common.pdb

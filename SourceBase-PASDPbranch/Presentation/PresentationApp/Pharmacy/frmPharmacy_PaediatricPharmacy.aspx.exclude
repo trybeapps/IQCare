@@ -1,0 +1,196 @@
+<%@ Page Language="C#" MasterPageFile="~/ClinicalForms/ClinicalHeaderFooter.master" AutoEventWireup="true" CodeFile="frmPharmacy_PaediatricPharmacy.aspx.cs" Inherits="Pharmacy_frmPharmacy_PaediatricPharmacy" Title="Untitled Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="clinicalheaderfooter" Runat="Server">
+<form id="frmPediatric_Pharmacy" method="post" runat="server" title="Pediatric Pharmacy">
+<h1 class=margin>Paediatric Pharmacy Form</h1>
+<div class="border center formbg">
+<table cellspacing=6 cellpadding=0 width="100%" border="0">
+ <tbody>
+    <tr>
+        <td class="form" align="center" colSpan=2>
+            <label class=patientinfo>Patient Name:</label>
+            <asp:Label ID=lblPatientName runat="server"></asp:Label>
+            <LABEL class=patientInfo>Patient ID #:</LABEL> 
+            <asp:Label ID="lblpatientenrolment" runat="server" Text=""></asp:Label>
+            <LABEL class=patientInfo>Existing Hosp/Clinic #:</LABEL>
+            <asp:Label ID="lblExisPatientID" runat="server" Text=""></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td class="form" width="50%">
+            <label class="right35">Age:</label>
+            <asp:TextBox ID="txtYr" runat="server" Width="50"></asp:TextBox>Yrs
+            <asp:TextBox ID="txtMon" runat="server" Width="50"></asp:TextBox>Months
+       </td>
+        <td class="form" width="50%">
+            <label class="right35">DOB:</label>
+             <asp:TextBox ID="txtDOB" runat="server" Width="80"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="form" align="center" colSpan=2>
+            <label class=patientinfo>Weight:</label>
+            <asp:Label ID=lblWeight runat="server"></asp:Label>
+            <asp:TextBox ID="txtWeight" runat="server"  ></asp:TextBox>Kg
+            <LABEL class=patientInfo>Height:</LABEL>
+            <asp:Label ID="lblHeight" runat="server" Text=""></asp:Label>
+            <asp:TextBox ID="txtHeight" runat="server"></asp:TextBox>cm
+            <LABEL class=patientInfo>Body Surface Area:</LABEL> 
+            <asp:Label ID="lblBSA" runat="server" Text=""></asp:Label>
+            <asp:TextBox ID="txtBSA" runat="server" />m<sup>2</sup>
+        </td>
+    </tr>
+</tbody>
+</table>
+</div><br />
+
+
+<DIV class="border center formbg"><BR>
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+    <TR>
+        <TD class="border pad5 whitebg">
+            <div class="border pad5 whitebg">
+                <asp:Panel ID="pnlPedia" runat="server" height="100%" Width="100%" Wrap="true">
+                </asp:Panel>
+            </div>
+            
+            <br />
+<div class = "border">
+    <asp:Panel ID="PnlAdARV" runat="server" Height="100%" Width="100%" Wrap = "true" >
+           <div align = "center" id = "divAddARV" runat = "server">
+               <asp:Button ID="BtnAddARV" runat="server" Text="Other ARV Medications" OnClick="BtnAddARV_Click" />
+           </div> 
+    </asp:Panel>
+</div>
+
+<script language = "javascript" type = "text/javascript">
+ function GetControl()
+ {
+      document.forms(0).submit();  
+ }
+ 
+ function CalcualteBSF(txtBSF,Weight,Height)
+{
+    var YR1 = document.getElementById(Weight).value;
+    var YR2 = document.getElementById(Height).value;
+    if (YR1 == "" || YR2 == "")
+    {
+        YR1 = 0;
+        YR2 = 0;
+    }
+   // if (YR2 = "")
+   // {
+   //     YR2 = 0;
+   // }
+    YR1 = parseInt(YR1);
+    YR2 = parseInt(YR2);
+   // alert(YR1);
+  //  alert(YR2);
+    var BSF = Math.sqrt(YR1 * YR2/3600);
+    BSF = BSF.toFixed(2);
+    document.getElementById(txtBSF).value = BSF; 
+}
+
+ 
+ </script> 
+
+<br />
+<div class = "border">
+    <asp:Panel ID="PnlOIARV" runat="server" Height="100%" Width="100%" Wrap = "true" >
+    </asp:Panel>
+</div>
+
+<br />
+
+<div class = "border">
+    <asp:Panel ID="PnlOtMed" runat="server" Height="100%" Width="100%" Wrap = "true" >
+    <div align = "center" id = "divAddOI" runat = "server">
+        <asp:Button ID="OtherMedication" runat="server" Text="OI Treatment and Other Medications" OnClick="OtherMedication_Click" />
+    </div>
+    </asp:Panel>
+
+</div>
+
+
+        </TD>
+   </TR>
+</TBODY>
+</TABLE>
+</DIV>
+
+<DIV class="border center formbg"><BR>
+<h2 class=forms align=left> Approval and Signatures</h2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class="form">
+    <LABEL class=right50>Ordered by:</LABEL> 
+    <asp:DropDownList ID=ddlPharmOrderedbyName runat="Server">
+    </asp:DropDownList>
+    </TD>
+    <TD class="form"><LABEL class=right50 for=pharmOrderedbyDate>Ordered By Date:</LABEL> 
+    <INPUT id=txtpharmOrderedbyDate maxLength=10 size=10 name=pharmOrderedbyDate runat="server" > 
+      <IMG id=appDateimg1 onclick="w_displayDatePicker('<%=txtpharmOrderedbyDate.ClientID%>');"  height=22 
+      alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 border=0 name=appDateimg>
+      <SPAN class=smallerlabel id=appDatespan1>(DD/MM/YYYY)</SPAN>
+     </TD>
+     </TR>
+     
+     <TR>
+     <TD class="form" ><LABEL class=right50>Dispensed by:</LABEL> 
+     <asp:DropDownList ID=ddlPharmReportedbyName runat="server" >
+     
+    </asp:DropDownList>
+    </TD>
+      
+    <TD class="form">
+    <LABEL class=right50 for=pharmReportedbyDate>Dispensed by Date:</LABEL> 
+    <INPUT id=txtpharmReportedbyDate  maxLength=10 size=10 name=pharmReportedbyDate runat="server"> 
+           <IMG id=appDateimg2    onclick="w_displayDatePicker('<%=txtpharmReportedbyDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" 
+           width=22 border=0 name=appDateimg><SPAN class=smallerlabel id=appDatespan2>(DD/MM/YYYY)</SPAN> </TD></TR>
+  <TR>
+    <TD class="form" align=center valign=middle colSpan=2>
+    
+    <label >Signature:</label> 
+     <asp:DropDownList ID=ddlPharmSignature runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPharmSignature_SelectedIndexChanged" >
+     <asp:ListItem Selected="True" Text="Select"></asp:ListItem>
+     <asp:ListItem Text="No Signature"></asp:ListItem>
+     <asp:ListItem Text="Patient's Signature"></asp:ListItem>
+     <asp:ListItem Text="Adherance counsellor signature"></asp:ListItem>
+     </asp:DropDownList>
+     
+    
+    <asp:DropDownList ID=ddlCounselerName runat="server" visible ="false" AutoPostBack="True" OnSelectedIndexChanged="ddlCounselerName_SelectedIndexChanged" >
+    </asp:DropDownList>
+    
+      <%--<DIV id=otherpharmSignature style="DISPLAY: none"></DIV>--%>
+      <LABEL ID="lblCounselorName" class=margin20 visible="false" runat ="server">Specify Counselor Name: </LABEL> 
+      <asp:TextBox ID=txtCounselorName Visible="false" runat="server"  >
+      </asp:TextBox>
+          <asp:Label ID="Label2" runat="server" Visible="false" Text="Label"></asp:Label></TD>
+  </TR>
+  
+  <TR>
+    <TD class="form" align=center valign=middle colSpan=2>
+    
+    <label >FDC:</label> 
+    <label >Yes:</label> 
+     <asp:RadioButton ID=rdoFDC runat="server" GroupName=FDC  AutoPostBack="true" OnCheckedChanged="rdoFDC_CheckedChanged"  />
+      <label >No:</label> 
+     <asp:RadioButton ID=rdoNonFDC runat="server" GroupName=FDC  AutoPostBack="true" OnCheckedChanged="rdoNonFDC_CheckedChanged" />
+  </TR>
+  
+  <TR>
+   <TD class="pad5 center" colSpan="2">
+        <asp:Button ID="btnsave" runat="server" Text = "Save" OnClick="btnsave_Click"  />
+        <asp:Button ID="btncancel" runat="server" Text = "Back" OnClick="btncancel_Click" />
+  </TD> 
+    
+ </TR></TBODY></TABLE></DIV><BR>
+ 
+
+
+</form>
+
+</asp:Content>
+

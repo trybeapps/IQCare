@@ -1,0 +1,140 @@
+<%@ Page Language="C#" MasterPageFile="~/ClinicalForms/ClinicalHeaderFooter.master" AutoEventWireup="true" CodeFile="AdultPharmacy1.aspx.cs" Inherits="Pharmacy_AdultPharmacy1" Title="Untitled Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="clinicalheaderfooter" Runat="Server">
+<FORM id="frmAdultPharmacy" method=post runat="server">
+<H1 class=margin>Adult Pharmacy Form</H1>
+<DIV class="border center formbg"><!-- DAL: using tables for form layout. Note that there are classes on labels and td. For custom fields, just use the 2 column layout, if there is an uneven number of cells, set last cell colspan="2" and align="center". Probably should talk through this -->
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class="form" align=center valign=middle>
+    <LABEL class=patientInfo>Patient Name:</LABEL><asp:Label ID="lblPatientName" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Satellite #:</LABEL><asp:Label ID="lblSatelliteId" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Patient Enrollment #:</LABEL><asp:Label ID="lblpatientenrol" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Existing Hosp/Clinic #:</LABEL><asp:Label ID="lblExisclinicID" runat="server" ></asp:Label>  </TD></TR>
+  <TR>
+    <TD class="form" align=center valign=middle>
+    <LABEL class=patientInfo>Weight:</LABEL> 
+        <asp:Label ID="Label5" runat="server" ></asp:Label> 
+    <LABEL class=patientInfo>Creatinine:</LABEL>
+    <asp:Label ID="Label6" runat="server" ></asp:Label></TD></TR>
+  <TR>
+    <TD class="form" align=center valign=middle><INPUT id=chkpharmDispensePU 
+      type=checkbox value=no name=pharmDispensePU runat="server"><LABEL class=alert>DO NOT 
+      DISPENSE ARV'S TO PATIENT. HOLD FOR ADHERENCE STAFF PICKUP.</LABEL> 
+  </TD></TR></TBODY></TABLE></DIV><BR>
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>ARV Medications</H2>
+<%--<h3 class=forms align=left><asp:Label ID=Label1 Text="NRTIS" runat="server"></asp:Label></h3>--%>
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+<TR>
+
+<TD class="border pad5 formbg">
+<div class=checkboxNSPharmacy>
+<asp:Panel ID="PnlDrug" runat="server" Height="100%" Width="100%" Wrap = "true" OnInit = "PnlDrug_Init">
+ </asp:Panel>
+
+ <asp:XmlDataSource ID="FxdDrugs" runat="server" DataFile="~/XMLFiles/adultpharmacylist.xml">
+    </asp:XmlDataSource>
+</div>
+</td>
+</tr>
+</TBODY>
+</TABLE>
+</DIV>
+
+
+
+
+<DIV class="border center formbg"><BR>
+<H2 class=forms align=left>OI Treatment and Other Medications</H2>
+
+<TABLE cellSpacing=6 cellPadding="0" border = "0" width="100%">
+<TBODY>
+<TR>
+<TD class="border pad5 formbg">
+<div class=checkboxNSPharmacy>
+<asp:Panel ID="PnlOther" runat="server" Height="100%" Width="100%" Wrap = "true">
+   
+    <asp:Panel ID="PnlDrugList" runat="server" Height="89px" Width="100%">
+    <asp:Button ID="BtnSelect" runat="server" Text="Select Drug" CssClass="button:link" />
+    <asp:ListBox ID="lstDrug" runat="server" Height="76px" AutoPostBack = "true" Width="536px" OnSelectedIndexChanged="lstDrug_SelectedIndexChanged"></asp:ListBox></asp:Panel>
+</asp:Panel>
+
+</div>
+</td>
+</tr>
+</TBODY>
+</TABLE>
+</DIV>
+
+<DIV class="border center formbg"><BR>
+<h2 class=forms align=left> Approval and Signatures</h2>
+<TABLE cellSpacing=6 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class="form">
+    <LABEL class=right50>Ordered by:</LABEL> 
+    <asp:DropDownList ID=ddlPharmOrderedbyName runat="Server">
+    </asp:DropDownList>
+    </TD>
+    <TD class="form"><LABEL class=right50 for=pharmOrderedbyDate>Ordered By Date:</LABEL> 
+    <INPUT id=txtpharmOrderedbyDate onblur="DateFormat(this,this.value,event,false,'3')" onkeyup="DateFormat(this,this.value,event,false,'3')" 
+      onfocus="javascript:vDateType='3'" maxLength=10 size=10 
+      name=pharmOrderedbyDate runat="server"> 
+      <IMG id=appDateimg1 onclick="w_displayDatePicker('<%=txtpharmOrderedbyDate.ClientID%>');" height=22 
+      alt="Date Helper" hspace=5 src="../images/cal_icon.gif" width=22 border=0 name=appDateimg>
+      <SPAN class=smallerlabel id=appDatespan1>(DD/MM/YYYY)</SPAN>
+     </TD>
+     </TR>
+     
+     <TR>
+     <TD class="form" ><LABEL class=right50>Dispensed by:</LABEL> 
+     <asp:DropDownList ID=ddlPharmReportedbyName runat="server" >
+     
+    </asp:DropDownList>
+    </TD>
+      
+    <TD class="form">
+    <LABEL class=right50 for=pharmReportedbyDate>Dispensed by Date:</LABEL> 
+    <INPUT id=txtpharmReportedbyDate onblur="DateFormat(this,this.value,event,false,'3')" onkeyup="DateFormat(this,this.value,event,false,'3')" 
+           onfocus="javascript:vDateType='3'" maxLength=10 size=10 name=pharmReportedbyDate runat="server"> 
+           <IMG id=appDateimg2 onclick="w_displayDatePicker('<%=txtpharmReportedbyDate.ClientID%>');" height=22 alt="Date Helper" hspace=5 src="../images/cal_icon.gif" 
+           width=22 border=0 name=appDateimg><SPAN class=smallerlabel id=appDatespan2>(DD/MM/YYYY)</SPAN> </TD></TR>
+  <TR>
+    <TD class="form" align=center valign=middle colSpan=2>
+    <LABEL>Signature:</LABEL> 
+    <asp:DropDownList ID=ddlPharmSignature runat="server" >
+     
+    </asp:DropDownList>
+      <DIV id=otherpharmSignature style="DISPLAY: none">
+      <LABEL class=margin20>Specify Counselor Name:</LABEL> 
+      <asp:TextBox ID=txtCounselorName runat="server">
+      </asp:TextBox>
+          <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></DIV></TD>
+  </TR>
+  <TR>
+   <TD class="pad5 center" colSpan="2">
+        <asp:Button ID="btnsave" runat="server" Text = "Save"  />
+        <asp:Button ID="btncmplete" runat="server" Text = "Complete"  />
+  </TD> 
+ </TR></TBODY></TABLE></DIV><BR>
+ 
+ 
+ 
+</FORM>
+ 
+</asp:Content>
+
+
+
+
+
+
+
+
+
+
+
+
+

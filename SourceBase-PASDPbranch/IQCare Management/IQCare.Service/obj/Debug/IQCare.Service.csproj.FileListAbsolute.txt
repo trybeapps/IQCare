@@ -1,0 +1,12 @@
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.Form1.resources
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.frmConnection.resources
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.frmDataUpsizing.resources
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.frmMigration.resources
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.frmService.resources
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.csproj.GenerateResource.Cache
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.dll
+C:\IQCare 3.6.0\SourceBase\IQCare Management\IQCare.Service\obj\Debug\IQCare.Service.pdb
+C:\IQCare 3.6.0\SourceBase\IQCare Management\bin\debug\IQCare.Service.dll.config
+C:\IQCare 3.6.0\SourceBase\IQCare Management\bin\debug\IQCare.Service.dll
+C:\IQCare 3.6.0\SourceBase\IQCare Management\bin\debug\IQCare.Service.pdb

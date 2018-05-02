@@ -1,0 +1,210 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Drawing;
+using System.Drawing.Imaging;
+
+using Application.Common;
+using Application.Presentation;
+using Interface.Administration;
+
+public partial class frmAdmin_FacilitySetup : System.Web.UI.Page
+{
+    int FacilityId;
+    #region "User Functions"
+    private void Init_Form()
+    {
+        txtfacilityname.Text = "";
+        txtcountryno.Text = "";
+        txtLPTF.Text = "";
+        txtsatliteno.Text = "";
+        txtGrace.Text = "";
+        txtPEPFAR_Fund.Text = "";
+    }
+    private void Fill_Details()
+    {
+        IFacility FacilityManager;
+        FacilityManager = (IFacility)ObjectFactory.CreateInstance("BusinessProcess.Administration.BFacility, BusinessProcess.Administration");
+        DataSet theDS = FacilityManager.GetFacility();
+        if (theDS.Tables.Count > 0)
+        {
+            FacilityId = Convert.ToInt32(theDS.Tables[0].Rows[0]["FacilityID"]);
+            txtfacilityname.Text = theDS.Tables[0].Rows[0]["FacilityName"].ToString();
+            txtcountryno.Text = theDS.Tables[0].Rows[0]["CountryID"].ToString();
+            txtLPTF.Text = theDS.Tables[0].Rows[0]["PosID"].ToString();
+            txtsatliteno.Text = theDS.Tables[0].Rows[0]["SatelliteID"].ToString();
+            txtGrace.Text = theDS.Tables[0].Rows[0]["AppGracePeriod"].ToString();
+            DateTime Pepfardate;
+            if (theDS.Tables[0].Rows[0].IsNull("PepFarStartDate"))
+            {
+                Pepfardate = DateTime.MinValue;
+            }
+            else
+            {
+                Pepfardate = Convert.ToDateTime(theDS.Tables[0].Rows[0]["PepFarStartDate"]);
+            }
+            txtPEPFAR_Fund.Text = Pepfardate.ToString(Session["AppDateFormat"].ToString());
+            //FileLoad.Value = theDS.Tables[0].Rows[0]["Image"].ToString();
+            Session["LoginImage"] = theDS.Tables[0].Rows[0]["Image"].ToString();
+        }
+    }
+
+    private Boolean FieldValidation()
+    {
+        if (txtfacilityname.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "Facility Name";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtfacilityname.Focus();
+            return false;
+        }
+        if (txtcountryno.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "Country No";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtcountryno.Focus();
+            return false;
+        }
+        if (txtLPTF.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "LTPF No";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtLPTF.Focus();
+            return false;
+        }
+        if (txtsatliteno.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "Satilite No";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtcountryno.Focus();
+            return false;
+        }
+        if (txtGrace.Text.Trim() == "")
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["Control"] = "Grace Period";
+            IQCareMsgBox.Show("BlankTextBox", theBuilder, this);
+            txtGrace.Focus();
+            return false;
+        }
+        return true;
+    }
+
+    #endregion
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        try
+        {
+            if (Page.IsCallback != true)
+            {
+                (Master.FindControl("lblheader") as Label).Text = "Facility Setup";
+                Init_Form();
+                if (FacilityId > 0)
+                {
+                    btnSave.Text = "Save";
+                    IQCareMsgBox.ShowConfirm("FacilitySaveRecord",btnSave); 
+                }
+                else
+                {
+                    btnSave.Text = "Update";
+                    IQCareMsgBox.ShowConfirm("FacilityUpdateRecord", btnSave);
+                }
+                Fill_Details();
+            }
+        }
+        catch (Exception err)
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["MessageText"] = err.Message.ToString();
+            IQCareMsgBox.Show("#C1", theBuilder, this);
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+
+        if (FieldValidation() == false)
+        {
+            return;
+        }
+
+        IFacility FacilityManager;
+        IQCareUtils theUtils = new IQCareUtils();
+        string thePepFarDate = "";
+        if (txtPEPFAR_Fund.Text.Trim()!= "")
+            thePepFarDate = theUtils.MakeDate(txtPEPFAR_Fund.Text);
+        try
+        {
+            string theFName;
+            if (FileLoad.PostedFile != null)
+            {
+                HttpPostedFile theFile = FileLoad.PostedFile;
+                //theFile.SaveAs(Server.MapPath("Login.jpg"));
+                theFile.SaveAs(Server.MapPath(string.Format("../images/{0}", "Login.jpg"))); 
+                theFName = "Login.jpg";
+            }
+            else if (Session["LoginImage"].ToString() != "")
+            {
+                theFName = Session["LoginImage"].ToString();
+            }
+            else
+            {
+                theFName = "";
+            }
+
+            if (btnSave.Text == "Save")
+            {
+                FacilityManager = (IFacility)ObjectFactory.CreateInstance("BusinessProcess.Administration.BFacility, BusinessProcess.Administration");
+                int Rows = FacilityManager.SaveNewFacility(txtfacilityname.Text, Convert.ToInt32(txtcountryno.Text), Convert.ToInt32(txtLPTF.Text), Convert.ToInt32(txtsatliteno.Text), theFName, 0, Convert.ToInt32(txtGrace.Text), "dd-MMM-yyyy", Convert.ToDateTime(thePepFarDate), Convert.ToInt32(Session["AppUserId"]));
+                if (Rows > 0)
+                {
+                    IQCareMsgBox.Show("FacilityMasterSave", this);
+                    Init_Form();
+                }
+                else
+                {
+                    IQCareMsgBox.Show("FacilityMasterExists", this);
+                    return;    
+                }
+            }
+            else
+            {
+                FacilityManager = (IFacility)ObjectFactory.CreateInstance("BusinessProcess.Administration.BFacility, BusinessProcess.Administration");
+                int Rows = FacilityManager.UpdateFacility(FacilityId, txtfacilityname.Text, Convert.ToInt32(txtcountryno.Text), Convert.ToInt32(txtLPTF.Text), Convert.ToInt32(txtsatliteno.Text), theFName, 0, Convert.ToInt32(txtGrace.Text), "dd-MMM-yyyy", Convert.ToDateTime(thePepFarDate), Convert.ToInt32(Session["AppUserId"]));
+                if (Rows > 0)
+                {
+                    IQCareMsgBox.Show("FacilityMasterUpdate", this);
+                    Init_Form(); 
+                }
+            }
+        }
+        catch (Exception err)
+        {
+            MsgBuilder theBuilder = new MsgBuilder();
+            theBuilder.DataElements["MessageText"] = err.Message.ToString();
+            IQCareMsgBox.Show("#C1", theBuilder, this);
+        }
+        finally
+        {
+            FacilityManager = null;  
+        }
+    }
+
+    protected void btnExit_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("../frmFacilityHome.aspx");
+    }
+
+}

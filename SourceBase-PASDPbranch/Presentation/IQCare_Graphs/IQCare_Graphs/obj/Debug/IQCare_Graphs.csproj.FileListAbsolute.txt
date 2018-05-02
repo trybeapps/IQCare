@@ -1,0 +1,13 @@
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\IQCare_Graphs.dll
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\IQCare_Graphs.pdb
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\AppManifest.xaml
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\IQCare_Graphs.xap
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\TestPage.html
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\Bin\Debug\Microsoft.Windows.Controls.DataVisualization.dll
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\App.g.i.cs
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\MainPage.g.i.cs
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\IQCare_Graphs.g.resources
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\IQCare_Graphs.dll
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\IQCare_Graphs.pdb
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\XapCacheFile.xml
+C:\IQCare 3.6.0\SourceBase\Presentation\IQCare_Graphs\IQCare_Graphs\obj\Debug\IQCare_Graphs.csprojResolveAssemblyReference.cache

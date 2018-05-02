@@ -1,0 +1,16 @@
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.exe.config
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.exe
+C:\IQCare 3.6.0\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Release\RemServer.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Release\RemServer.frmConnection.resources
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Release\RemServer.csproj.GenerateResource.Cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Release\RemServer.exe
+C:\IQCare 3.6.0\SourceBase\DataAccess\RemServer\obj\Release\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.exe.config
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Release\RemServer.exe
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Release\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.exe
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\DataAccess\Bin\Release\RemServer.pdb
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Release\RemServer.csprojResolveAssemblyReference.cache
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Release\RemServer.frmConnection.resources
+C:\Users\Akhil\Desktop\SourceBase IQCare 3.6.0 5 June 2014\SourceBase\DataAccess\RemServer\obj\Release\RemServer.csproj.GenerateResource.Cache

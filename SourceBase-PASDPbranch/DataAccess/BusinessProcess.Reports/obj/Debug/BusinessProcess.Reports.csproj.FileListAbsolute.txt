@@ -1,0 +1,5 @@
+C:\IQCare 3.6.0\References\BusinessProcess.Reports.dll
+C:\IQCare 3.6.0\References\BusinessProcess.Reports.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Reports\obj\Debug\BusinessProcess.Reports.csprojResolveAssemblyReference.cache
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Reports\obj\Debug\BusinessProcess.Reports.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\BusinessProcess.Reports\obj\Debug\BusinessProcess.Reports.pdb

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE HTML>
+<html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- This line includes the general project style sheet (not required) -->
+   <link type="text/css" href="default.css" rel="stylesheet">
+
+<!-- This block defines the styles of the TOC headings, change them as needed -->
+<style type="text/css">
+a { color: black; text-decoration: none }
+a:visited {color: black}
+a:hover { text-decoration: underline }
+.navtitle    { font-size: 14pt; font-weight: bold; margin-bottom: 16px; }
+.navbar      { font-size: 10pt; }
+span#navsearch {display: none;}
+
+ body { }
+.heading1 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading2 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading3 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading4 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading5 { font-size: 10pt; color: #000000; text-decoration: none; }
+.heading6 { font-size: 10pt; color: #000000; text-decoration: none; }
+
+.hilight1 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight2 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight3 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight4 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight5 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+.hilight6 { font-size: 10pt; color: #FFFFFF; background: #004101; text-decoration: none; }
+
+/* TOC LIST CSS */
+#toc    { padding:0; margin:0 }
+#toc li { margin-top:2px; margin-left:0px; padding:1px; }
+#toc ul { padding-left:0; margin-left:-16px; }
+/* TOC LIST CSS */
+</style>
+<!--[if lt IE 7]>
+<style type="text/css">
+ html {padding: 0; margin: 0;overflow-x: hidden;}
+ body { margin: 0; padding: 15px 0 0 10px;} 
+</style> 
+<![endif]-->
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript">
+     var parentScope = (parent.hmNavigationFrame);
+     if (!parentScope) {
+		      var s = document.createElement("script");
+		      s.setAttribute("type","text/javascript");
+		      s.setAttribute("src", "helpman_navigation.js");
+		      document.getElementsByTagName("head")[0].appendChild(s);
+	    }
+     else {
+       if (initialtocstate != "expandall") parent.hmAddCss(document, "#toc li ul { display: none }");
+     }
+     function loadicons() { var icons = new Array(); for (i=0; i<arguments.length; i++) { icons[i] = new Image(); icons[i].src = arguments[i]; } }
+     function loadtoc() { if (parentScope) parent.loadstate(document.getElementById("toc")); else loadstate(document.getElementById("toc")); }
+     function savetoc() { if (parentScope) parent.savestate(document.getElementById("toc")); else savestate(document.getElementById("toc")); }
+     function clicked(node, event) { deselect(); if (parentScope) parent.hmNodeClicked(node, event); else hmNodeClicked(node, event); }
+     function dblclicked(node) { if (parentScope) parent.hmNodeDblclicked(node); else hmNodeDblclicked(node); }
+     function deselect() { if (window.getSelection) window.getSelection().removeAllRanges(); else if (document.selection) document.selection.empty(); }
+     $(document).ready(function(){
+       loadtoc();
+       $(window).onunload = savetoc;
+     });
+   </script>
+</head>
+<body style="background:#FFFFFF url('lines.gif')">
+<p class="navtitle">PASDP -IQCare Touch V3.6.0</p>
+<p class="navbar">
+<b>Contents</b>&nbsp;
+<span id="navsearch">|&nbsp;<a href="pasdpv3_6_0_ftsearch.htm">Search</a></span>
+<hr size="1" />
+
+<!-- Placeholder for the TOC - this variable is REQUIRED! -->
+<ul id="toc" style="list-style-type:none;display:block;padding-left:0">
+<li class="heading1" id="i1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a1" href="pasdppadmt_overview.htm" target="hmcontent"><span class="heading1" id="s1">IQCare-PADMT Overview</span></a>
+</li>
+<li class="heading1" id="i2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a2" href="pasdpiqcare-padmt_support.htm" target="hmcontent"><span class="heading1" id="s2">IQCare-PADMT Support</span></a>
+</li>
+<li class="heading1" id="i3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a3" href="pasdpiqcare-padmt_data_entry_flow.htm" target="hmcontent"><span class="heading1" id="s3">IQCare-PADMT Data Entry Flow</span></a>
+</li>
+<li class="heading1" id="i4" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a4" href="pasdppatient_home_page_explained.htm" target="hmcontent"><span class="heading1" id="s4">Patient Home Page Explained</span></a>
+</li>
+<li class="heading1" id="i5" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a5" href="pasdpusing_touch_features.htm" target="hmcontent"><span class="heading1" id="s5">Using Touch Features</span></a>
+</li>
+<li class="heading1" id="i6" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a6" href="pasdpintegration_with_delta_9.htm" target="hmcontent"><span class="heading1" id="s6">Integration with Delta 9</span></a>
+</li>
+<li class="heading1" id="i7" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a7" href="pasdpfind_add_patient.htm" target="hmcontent"><span class="heading1" id="s7" ondblclick="return dblclicked(this)">Find/Add Patient</span></a>
+<ul id="ul7" style="list-style-type:none">
+<li class="heading2" id="i7.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a7.1" href="pasdpfind_a_patient.htm" target="hmcontent"><span class="heading2" id="s7.1">Find a Patient</span></a>
+</li>
+<li class="heading2" id="i7.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a7.2" href="pasdpadd_a_patient.htm" target="hmcontent"><span class="heading2" id="s7.2">Add a New Patient</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i8" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a8" href="pasdppatient_slider.htm" target="hmcontent"><span class="heading1" id="s8">Patient Slider</span></a>
+</li>
+<li class="heading1" id="i9" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a9" href="pasdpclinical_forms.htm" target="hmcontent"><span class="heading1" id="s9" ondblclick="return dblclicked(this)">Clinical Forms</span></a>
+<ul id="ul9" style="list-style-type:none">
+<li class="heading2" id="i9.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.1" href="pasdpregistration.htm" target="hmcontent"><span class="heading2" id="s9.1">Registration</span></a>
+</li>
+<li class="heading2" id="i9.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.2" href="pasdpvisit.htm" target="hmcontent"><span class="heading2" id="s9.2">Visit</span></a>
+</li>
+<li class="heading2" id="i9.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.3" href="pasdppharmacy.htm" target="hmcontent"><span class="heading2" id="s9.3">Pharmacy</span></a>
+</li>
+<li class="heading2" id="i9.4" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.4" href="pasdplaboratory.htm" target="hmcontent"><span class="heading2" id="s9.4">Laboratory</span></a>
+</li>
+<li class="heading2" id="i9.5" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.5" href="pasdpnon-visit_clinic_note.htm" target="hmcontent"><span class="heading2" id="s9.5">Non-Visit Clinic Note</span></a>
+</li>
+<li class="heading2" id="i9.6" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.6" href="pasdpimmunisations.htm" target="hmcontent"><span class="heading2" id="s9.6">Immunisations</span></a>
+</li>
+<li class="heading2" id="i9.7" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a9.7" href="pasdpcare_ended.htm" target="hmcontent"><span class="heading2" id="s9.7">Care Ended</span></a>
+</li>
+</ul>
+</li>
+<li class="heading1" id="i10" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a10" href="pasdpview_existing_forms.htm" target="hmcontent"><span class="heading1" id="s10">View Existing Forms</span></a>
+</li>
+<li class="heading1" id="i11" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a11" href="pasdpreports.htm" target="hmcontent"><span class="heading1" id="s11">Reports</span></a>
+</li>
+<li class="heading1" id="i12" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a12" href="pasdpdata_dictionary.htm" target="hmcontent"><span class="heading1" id="s12">Data Dictionary</span></a>
+</li>
+<li class="heading1" id="i13" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a13" href="pasdplab_alert_business_rules.htm" target="hmcontent"><span class="heading1" id="s13">Lab Alert Business Rules</span></a>
+</li>
+<li class="heading1" id="i14" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading1" id="a14" href="pasdpadministration.htm" target="hmcontent"><span class="heading1" id="s14" ondblclick="return dblclicked(this)">Administration</span></a>
+<ul id="ul14" style="list-style-type:none">
+<li class="heading2" id="i14.1" data-bg="button_closedbook.gif;button_openbook.gif" style="background:url(button_openbook.gif) no-repeat;cursor:pointer;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a14.1" href="pasdpcustom_lists.htm" target="hmcontent"><span class="heading2" id="s14.1" ondblclick="return dblclicked(this)">Custom Lists</span></a>
+<ul id="ul14.1" style="list-style-type:none">
+<li class="heading3" id="i14.1.1" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a14.1.1" href="add_an_entry_in_a_custom_list.htm" target="hmcontent"><span class="heading3" id="s14.1.1">Add an Entry in a Custom List</span></a>
+</li>
+<li class="heading3" id="i14.1.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a14.1.2" href="update_an_entry_in_a_restricted_custom_list.htm" target="hmcontent"><span class="heading3" id="s14.1.2">Update an Entry in a Custom List</span></a>
+</li>
+<li class="heading3" id="i14.1.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading3" id="a14.1.3" href="change_list_entry_priority.htm" target="hmcontent"><span class="heading3" id="s14.1.3">Change List Entry Priority</span></a>
+</li>
+</ul>
+</li>
+<li class="heading2" id="i14.2" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a14.2" href="pasdpconfigure_care_ended_form.htm" target="hmcontent"><span class="heading2" id="s14.2">Configure Care Ended Form</span></a>
+</li>
+<li class="heading2" id="i14.3" style="background:url(button_topic.gif) no-repeat;padding-left:34px" onclick="return clicked(this,event)"><a class="heading2" id="a14.3" href="pasdpconfigure_audit_trail.htm" target="hmcontent"><span class="heading2" id="s14.3">Configure Audit Trail</span></a>
+</li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">loadicons('button_topic.gif','button_openbook.gif','button_closedbook.gif');</script>
+<hr size="1" /><p><span style="font-size: 8px">© 2014 Futures Group</span></p>
+<script type="text/javascript">
+document.getElementById("navsearch").style.display="inline";
+</script> 
+</body>
+</html>
+
+
+
+
+
+
+
+

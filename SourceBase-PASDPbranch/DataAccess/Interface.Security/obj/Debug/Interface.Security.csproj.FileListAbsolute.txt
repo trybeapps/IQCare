@@ -1,0 +1,4 @@
+C:\IQCare 3.6.0\References\Interface.Security.dll
+C:\IQCare 3.6.0\References\Interface.Security.pdb
+C:\IQCare 3.6.0\SourceBase\DataAccess\Interface.Security\obj\Debug\Interface.Security.dll
+C:\IQCare 3.6.0\SourceBase\DataAccess\Interface.Security\obj\Debug\Interface.Security.pdb

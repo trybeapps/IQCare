@@ -1,0 +1,18 @@
+2015-09-24 14:35:05,098 [5] ERROR Application.Common.CLogger - Namespace: DataAccess.Entity, Class: ClsObject, Method: ReturnObject - Call started.
+2015-09-24 14:35:05,105 [5] ERROR Application.Common.CLogger - CommandText: pr_Admin_SelectFacility_Constella
+2015-09-24 14:35:05,107 [5] ERROR Application.Common.CLogger - Parameters: 
+Name: @SystemId, Type: Int, Value: 1, Direction: Input
+
+2015-09-24 14:35:05,111 [5] ERROR Application.Common.CLogger - Exception Message: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataAccess.Base.DataMgr.GetConnection() in C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Base\DataMgr.cs:line 34
+   at DataAccess.Entity.ClsObject.ReturnObject(Hashtable Params, String CommandText, ObjectEnum Obj) in C:\Projects\IQCare 3.6.0\SourceBase\DataAccess\DataAccess.Entity\ClsObject.cs:line 38
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2015-09-24 14:35:05,114 [5] ERROR Application.Common.CLogger - ---------------------------------------------------------------------------------------
